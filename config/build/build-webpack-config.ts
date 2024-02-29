@@ -11,13 +11,13 @@ export const buildWebpackConfig = (options: BuildOptions): Configuration => {
     mode,
     entry,
     output: {
-      filename: "[contenthash].[name].js",
+      filename: "[contenthash:8].[name].js",
       path: build,
       clean: true
     },
     plugins: buildPlugins(options),
     module: {
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     resolve: buildResolvers(),
     devtool: isDev ? 'inline-source-map' : undefined,
