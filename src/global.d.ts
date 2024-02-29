@@ -6,3 +6,7 @@ declare module '*.scss' {
   const classNames: IClassName;
   export = classNames
 }
+
+declare module 'global' {
+  export type valueOf<T extends {}> = T[keyof T];
+}
