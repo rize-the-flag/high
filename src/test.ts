@@ -1,4 +1,6 @@
 export function someFn(arg: number): string {
   console.log("Some FN");
-  return 'Some Fn';
+  return 'HMR is working now';
 }
+
+document.body.innerHTML = `<h1>Hi</h1>`
