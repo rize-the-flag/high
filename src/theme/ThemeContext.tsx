@@ -9,8 +9,8 @@ export const Theme = {
 export type ThemeType = valueOf<typeof Theme>;
 
 export interface ThemeContextProps {
-  theme?: ThemeType,
-  setTheme?: (theme: ThemeType) => void;
+  theme: ThemeType,
+  setTheme: (theme: ThemeType) => void;
 }
-export const ThemeContext = createContext<ThemeContextProps>({});
+export const ThemeContext = createContext<Partial<ThemeContextProps>>({});
 export const LOCAL_STORAGE_THEME_KEY = 'theme';
