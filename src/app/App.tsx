@@ -1,12 +1,8 @@
-import React, {Suspense} from 'react';
 import './styles/index.scss'
-import {Link, Route, Routes} from "react-router-dom";
 import {useTheme} from "app/providers/ThemeProvider";
 import {classNames} from "shared/lib/classNames/classNames";
-import {AboutPage} from "pages/AboutPage";
-import {MainPage} from "pages/MainPage";
 import {AppRouter} from "app/providers/router";
-
+import {Navbar} from "widgets/Navbar/ui/Navbar";
 
 
 export const App = () => {
@@ -17,8 +13,7 @@ export const App = () => {
       <button onClick={toggleTheme}>
         {theme === "dark" ? 'dark theme' : 'bright theme'}
       </button>
-      <Link to={'/'}>Main page</Link>
-      <Link to={'/about'}>About</Link>
+      <Navbar />
       <AppRouter />
     </div>
   );
