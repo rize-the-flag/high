@@ -10,11 +10,11 @@ export enum AppLinkTheme {
 
 interface AppLinkProps extends LinkProps {
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   theme?: AppLinkTheme;
 }
 
-const AppLink: FC<AppLinkProps> = (props) => {
+export const AppLink: FC<AppLinkProps> = (props) => {
   const {
     className,
     children,
@@ -33,4 +33,4 @@ const AppLink: FC<AppLinkProps> = (props) => {
   );
 };
 
-export default AppLink;
+
