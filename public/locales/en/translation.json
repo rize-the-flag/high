@@ -3,5 +3,6 @@
   "Translate": "Translate",
   "MenuLinkMain": "Main",
   "MenuLinkAbout": "About",
-  "SideBarToggleButton": "<---"
+  "SideBarToggleButton": "<---",
+  "PageNotFound": "404. Not Found"
 }

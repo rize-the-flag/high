@@ -3,5 +3,6 @@
   "Translate": "Перевод",
   "MenuLinkMain": "Главная",
   "MenuLinkAbout": "О нас",
-  "SideBarToggleButton": "<---"
+  "SideBarToggleButton": "<---",
+  "PageNotFound": "404. Страница не найдена"
 }
