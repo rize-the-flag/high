@@ -1,8 +1,8 @@
-import React, {JSX} from "react";
+import React, { type JSX } from 'react'
 
-type LazyImport = {
+interface LazyImport {
   readonly default: () => JSX.Element
 }
-export const MainPageAsync = React.lazy(() => new Promise<LazyImport>(res => {
-  setTimeout(() => res(import('./MainPage')), 2000)
-}));
+export const MainPageAsync = React.lazy(async () => await new Promise<LazyImport>((resolve) => {
+  setTimeout(() => { resolve(import('./MainPage')) }, 2000)
+}))

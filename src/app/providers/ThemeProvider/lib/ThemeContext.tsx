@@ -1,18 +1,18 @@
-import {createContext} from "react";
-import {valueOf} from "global";
+import { createContext } from 'react'
+import { type valueOf } from 'global'
 
 export const Theme = {
   LIGHT: 'light',
   DARK: 'dark'
-} as const;
+} as const
 
-export type ThemeType = valueOf<typeof Theme>;
+export type ThemeType = valueOf<typeof Theme>
 
 export interface ThemeContextProps {
-  theme: ThemeType,
-  setTheme?: (theme: ThemeType) => void;
+  theme: ThemeType
+  setTheme?: (theme: ThemeType) => void
 }
 export const ThemeContext = createContext<ThemeContextProps>({
-  theme: Theme.LIGHT,
-});
-export const LOCAL_STORAGE_THEME_KEY = 'theme';
+  theme: Theme.LIGHT
+})
+export const LOCAL_STORAGE_THEME_KEY = 'theme'

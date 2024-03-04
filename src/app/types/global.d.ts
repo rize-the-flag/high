@@ -1,9 +1,7 @@
 declare module '*.scss' {
-  interface IClassName {
-    [className: string]: string
-  }
+  type IClassName = Record<string, string>
 
-  const classNames: IClassName;
+  const classNames: IClassName
   export = classNames
 }
 
@@ -12,15 +10,14 @@ declare module '*.png';
 declare module '*.jpg';
 
 declare module '*.svg' {
-  import React from 'react';
-  const SVG: React.SVGFactory;
-  export default SVG;
+  import type React from 'react'
+  const SVG: React.SVGFactory
+  export default SVG
 }
 
-declare const __IS_DEV__: boolean;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+declare const __IS_DEV__: boolean
 
 declare module 'global' {
-  export type valueOf<T extends {}> = T[keyof T];
-
+  export type valueOf<T extends Record<string | number | symbol, unknown>> = T[keyof T]
 }
-
