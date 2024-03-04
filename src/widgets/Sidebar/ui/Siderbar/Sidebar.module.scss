@@ -3,9 +3,7 @@
   width: var(--sidebar-width);
   background: var(--bg-inverted-color);
   position: relative;
-  transition: width .3s;
-  -webkit-transition:width .3s;
-  -moz-transition: width 0.3s;
+  transition: width 0.3s;
 }
 
 .collapsed {

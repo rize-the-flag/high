@@ -6,6 +6,7 @@ module.exports = {
     "extends": [
         "standard-with-typescript",
         "plugin:react/recommended",
+        "plugin:i18next/recommended",
     ],
     "overrides": [
         {
@@ -28,7 +29,8 @@ module.exports = {
         }
     },
     "plugins": [
-        "react"
+        "react",
+        "i18next"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
@@ -39,7 +41,8 @@ module.exports = {
         "no-shadow": "off",
         "import/extensions": "off",
         "import/no-extraneous-dependencies": "warn",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "i18next/no-literal-string": ["error", {"markupOnly": true}],
     },
     "settings": {
         "react":{
