@@ -1,4 +1,7 @@
 {
   "Language": "Русский",
-  "Translate": "Перевод"
+  "Translate": "Перевод",
+  "MenuLinkMain": "Главная",
+  "MenuLinkAbout": "О нас",
+  "SideBarToggleButton": "<---"
 }

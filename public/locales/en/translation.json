@@ -1,4 +1,7 @@
 {
   "Language": "English",
-  "Translate": "Translate"
+  "Translate": "Translate",
+  "MenuLinkMain": "Main",
+  "MenuLinkAbout": "About",
+  "SideBarToggleButton": "<---"
 }
