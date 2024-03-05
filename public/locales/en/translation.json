@@ -4,5 +4,6 @@
   "MenuLinkMain": "Main",
   "MenuLinkAbout": "About",
   "SideBarToggleButton": "<---",
-  "PageNotFound": "404. Not Found"
+  "PageNotFound": "404. Not Found",
+  "UncaughtError": "Uncaught error occurs"
 }

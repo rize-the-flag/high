@@ -4,5 +4,6 @@
   "MenuLinkMain": "Главная",
   "MenuLinkAbout": "О нас",
   "SideBarToggleButton": "<---",
-  "PageNotFound": "404. Страница не найдена"
+  "PageNotFound": "404. Страница не найдена",
+  "UncaughtError": "Произошла непредвиденная ошибка"
 }
