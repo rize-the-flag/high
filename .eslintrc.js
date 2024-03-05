@@ -43,7 +43,7 @@ module.exports = {
         "import/extensions": "off",
         "import/no-extraneous-dependencies": "warn",
         "no-underscore-dangle": "off",
-        "i18next/no-literal-string": ["error", {"markupOnly": true}],
+        "i18next/no-literal-string": ["error", {"markupOnly": true}]
     },
     "settings": {
         "react":{
