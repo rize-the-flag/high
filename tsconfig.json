@@ -26,6 +26,7 @@
     "./config/jest/setupTests.ts",
     "./src/**/*.tsx",
     "./src/**/*.ts",
-    "./config/**/*.{ts,tsx}"
+    "./config/**/*.ts",
+    "./config/**/*.tsx"
   ]
 }
