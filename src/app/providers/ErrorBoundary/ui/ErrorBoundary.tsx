@@ -9,8 +9,11 @@ interface ErrorBoundaryProps {
   children: React.ReactNode
 }
 
-interface ErrorBoundaryState {
-  hasError: boolean
+type ErrorBoundaryState<TError = unknown> = {
+  hasError: true
+  error: TError
+} | {
+  hasError: false
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -21,7 +24,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
   static getDerivedStateFromError (error: Error) {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true }
+    return { hasError: true, error }
   }
 
   componentDidCatch (error: Error, errorInfo: ErrorInfo) {
@@ -33,7 +36,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     if (hasError) {
       return (
         <Suspense fallback="">
-          <PageError />
+          <PageError/>
         </Suspense>
       )
     }

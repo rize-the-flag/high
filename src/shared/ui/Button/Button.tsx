@@ -1,8 +1,9 @@
-import {type ButtonHTMLAttributes} from 'react'
-import {classNames} from '../../lib/classNames/classNames'
+import { type ButtonHTMLAttributes } from 'react'
+import { classNames } from '../../lib/classNames/classNames'
 import cls from './Button.module.scss'
 
 export enum ThemeButton {
+  OUTLINE = 'outline',
   CLEAR = 'clear'
 }
 
