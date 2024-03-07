@@ -1,35 +1,65 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import  'app/styles/index.scss'
-
-import {Button, ThemeButton} from './Button';
+import type { Meta, StoryObj } from '@storybook/react'
+import { Button, ThemeButton } from './Button'
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
+import { Theme } from 'app/providers/ThemeProvider'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: 'shared/Button',
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: ''
   },
   tags: ['autodocs'],
-  argTypes: {
+  argTypes: {}
+} satisfies Meta<typeof Button>
 
-  },
-} satisfies Meta<typeof Button>;
+export default meta
 
-export default meta;
+type Story = StoryObj<typeof meta>
 
-type Story = StoryObj<typeof meta>;
+export const Primary: Story = {
+  args: {
+    children: 'Text'
+  }
+}
 
-export const Outline: Story = {
+export const OutlineLight: Story = {
   args: {
     children: 'Text',
     theme: ThemeButton.OUTLINE
   },
-};
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
+}
 
-export const Clear: Story = {
+export const OutlineDark: Story = {
   args: {
     children: 'Text',
-    theme: ThemeButton.CLEAR,
+    theme: ThemeButton.OUTLINE
   },
-};
+  decorators: [
+    ThemeDecorator(Theme.DARK)
+  ]
+}
+
+export const ClearLight: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.CLEAR
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
+}
+
+export const ClearDark: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.CLEAR
+  },
+  decorators: [
+    ThemeDecorator(Theme.DARK)
+  ]
+}
