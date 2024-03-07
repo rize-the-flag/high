@@ -24,5 +24,7 @@ jobs:
         run: npm run lint:ts
       - name: CSS linter
         run: npm run lint:css
-      - name: unit testing
+      - name: Unit testing
         run: npm run test:unit
+      - name: Ui regression testing
+        run: npm run test:ui:ci
