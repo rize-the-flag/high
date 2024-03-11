@@ -5,11 +5,13 @@ import React from 'react'
 
 interface LangSwitcherProps {
   className?: string
+  short?: boolean
 }
 
 export const LangSwitcher = (props: LangSwitcherProps) => {
   const {
-    className
+    className,
+    short = false
   } = props
 
   const { t, i18n } = useTranslation()
@@ -24,7 +26,7 @@ export const LangSwitcher = (props: LangSwitcherProps) => {
       onClick={toggle}
       theme={ThemeButton.OUTLINE}
     >
-      {t('Language')}
+      {t(short ? 'LanguageShort' : 'Language')}
     </Button>
   )
 }
