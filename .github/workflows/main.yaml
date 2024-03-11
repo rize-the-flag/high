@@ -33,3 +33,6 @@ jobs:
       - name: Archive screenshots
         if: ${{ failure() }}
         uses: actions/upload-artifact@v1
+        with:
+          name: design-system
+          path: .loki
