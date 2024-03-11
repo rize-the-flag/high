@@ -32,3 +32,5 @@ export const Sidebar = ({ className }: SidebarProps) => {
     </div>
   )
 }
+
+export default Sidebar
