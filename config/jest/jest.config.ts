@@ -49,7 +49,10 @@ const config: Config = {
   },
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   preset: 'ts-jest',
-  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts']
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+  globals: {
+    __IS_DEV__: true
+  }
 }
 
 export default config
