@@ -1,9 +1,6 @@
 .modal {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  inset: 0;
   z-index: var(--modal-close-z-index);
   opacity: 0;
   visibility: hidden;
@@ -24,7 +21,6 @@
   padding: 20px;
   border-radius: 12px;
   background: var(--secondary-color);
-
   transition: .3s transform;
   transform: scale(0.5);
   max-width: 60%;
