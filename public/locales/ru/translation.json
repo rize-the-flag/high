@@ -6,5 +6,6 @@
   "MenuLinkAbout": "О нас",
   "SideBarToggleButton": "<---",
   "PageNotFound": "404. Страница не найдена",
-  "UncaughtError": "Произошла непредвиденная ошибка"
+  "UncaughtError": "Произошла непредвиденная ошибка",
+  "SignInBtn": "Войти"
 }

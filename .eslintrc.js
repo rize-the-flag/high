@@ -32,7 +32,8 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "i18next"
+        "i18next",
+        "react-hooks"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
@@ -45,7 +46,9 @@ module.exports = {
         "import/no-extraneous-dependencies": "warn",
         "no-underscore-dangle": "off",
         "i18next/no-literal-string": ["error", {"markupOnly": true}],
-        "@typescript-eslint/strict-boolean-expressions": "off"
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error"
     },
     "settings": {
         "react":{

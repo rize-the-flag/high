@@ -5,10 +5,12 @@ export const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as The
 
 interface Props {
   children: React.ReactNode
+  initialTheme: ThemeType
 }
 
-const ThemeProvider: FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeType>(defaultTheme)
+const ThemeProvider: FC<Props> = (props) => {
+  const { children, initialTheme } = props
+  const [theme, setTheme] = useState<ThemeType>(initialTheme ?? defaultTheme)
 
   const defaultProps = useMemo(() => ({
     theme,

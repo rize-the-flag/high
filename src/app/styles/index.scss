@@ -4,11 +4,14 @@
 @import "./themes/dark";
 @import "./fonts/roboto";
 
-.app {
+body {
   font: var(--font-m);
-  background: var(--bg-color);
   color: var(--primary-color);
-  height: 100vh;
+}
+
+.app {
+  background: var(--bg-color);
+  min-height: 100vh;
 }
 
 .content {

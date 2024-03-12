@@ -6,5 +6,6 @@
   "MenuLinkAbout": "About",
   "SideBarToggleButton": "<---",
   "PageNotFound": "404. Not Found",
-  "UncaughtError": "Uncaught error occurs"
+  "UncaughtError": "Uncaught error occurs",
+  "SignInBtn": "Sign in"
 }
