@@ -3,16 +3,16 @@ import cls from './Modal.module.scss'
 import {
   type ReactNode,
   type MouseEvent,
-  useEffect, useCallback
+  useEffect, useCallback, useState
 } from 'react'
 import Portal from 'shared/ui/Portal/Portal'
-import { useTheme } from 'app/providers/ThemeProvider'
 
 interface ModalProps {
   className?: string
   children?: ReactNode
   isOpen?: boolean
   onClose?: () => void
+  lazy?: boolean
 }
 
 export const Modal = (props: ModalProps) => {
@@ -20,8 +20,11 @@ export const Modal = (props: ModalProps) => {
     className,
     children,
     isOpen = false,
-    onClose
+    onClose,
+    lazy = false
   } = props
+
+  const [isMounted, setIsMounted] = useState(false)
 
   const mods: Record<string, boolean> = {
     [cls.opened]: isOpen
@@ -52,6 +55,14 @@ export const Modal = (props: ModalProps) => {
       window.removeEventListener('keydown', onKeyDown)
     }
   }, [isOpen, onKeyDown])
+
+  useEffect(() => {
+    isOpen && setIsMounted(true)
+  }, [isOpen])
+
+  if (lazy && !isMounted) {
+    return null
+  }
 
   return (
     <Portal>

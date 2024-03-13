@@ -1,0 +1,16 @@
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  color: transparent;
+  text-shadow: 0 0 0 var(--primary-color);
+}
+
+.input {
+  margin-top: 10px;
+}
+
+.loginBtn {
+  margin-top: 15px;
+  margin-left: auto;
+}
