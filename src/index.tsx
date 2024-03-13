@@ -6,11 +6,13 @@ import { ErrorBoundary } from 'app/providers/ErrorBoundary'
 import 'app/styles/index.scss'
 import 'shared/config/i18n/i18n'
 import { StoreProvider } from 'app/providers/StoreProvider'
-import { LOCAL_STORAGE_THEME_KEY } from 'app/providers/ThemeProvider/lib/ThemeContext'
+import { LOCAL_STORAGE_THEME_KEY, type ThemeType } from 'app/providers/ThemeProvider/lib/ThemeContext'
 
 const container = document.getElementById('root')
 
-document.body.className = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? Theme.LIGHT
+const theme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? Theme.LIGHT
+
+document.body.className = theme
 
 if (container !== null) {
   const root = createRoot(container)
@@ -18,7 +20,7 @@ if (container !== null) {
     <StoreProvider>
       <BrowserRouter>
         <ErrorBoundary>
-          <ThemeProvider initialTheme={Theme.LIGHT}>
+          <ThemeProvider initialTheme={theme as ThemeType}>
             <App/>
           </ThemeProvider>
         </ErrorBoundary>

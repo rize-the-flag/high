@@ -49,7 +49,6 @@ const _Input: FC<InputProps> = (props) => {
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value)
-    setCaretPosition(e.target.value.length)
   }
 
   useEffect(() => {
