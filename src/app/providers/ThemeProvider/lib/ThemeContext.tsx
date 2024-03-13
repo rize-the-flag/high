@@ -2,8 +2,8 @@ import { createContext } from 'react'
 import { type valueOf } from 'global'
 
 export const Theme = {
-  LIGHT: 'light',
-  DARK: 'dark'
+  LIGHT: 'app_light_theme',
+  DARK: 'app_dark_theme'
 } as const
 
 export type ThemeType = valueOf<typeof Theme>

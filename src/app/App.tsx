@@ -1,4 +1,3 @@
-import { useTheme } from 'app/providers/ThemeProvider'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { AppRouter } from 'app/providers/router'
 import { Navbar } from 'widgets/Navbar'
@@ -7,13 +6,14 @@ import Modal from 'shared/ui/Modal/Modal'
 import { useState } from 'react'
 
 export const App = () => {
-  const { theme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={classNames('app', {}, [theme as string])}>
+    <div className={classNames('app')}>
       <Navbar/>
-      <Modal isOpen={isOpen} onClose={() => { setIsOpen(false) }} />
+      <Modal isOpen={isOpen} onClose={() => {
+        setIsOpen(false)
+      }}/>
       <div className="content">
         <Sidebar/>
         <AppRouter/>

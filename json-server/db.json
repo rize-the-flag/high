@@ -1,0 +1,33 @@
+{
+  "posts": [
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "text": "put",
+      "postId": null,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": null
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userName": "Oleg",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "userName": "Ivan",
+      "password": "1234"
+    }
+  ]
+}
