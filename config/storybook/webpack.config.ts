@@ -1,4 +1,4 @@
-import { type Configuration } from 'webpack'
+import webpack, { type Configuration } from 'webpack'
 import path from 'path'
 import { buildCssLoaders } from '../build/loaders/buildCssLoaders'
 
@@ -18,6 +18,10 @@ export default ({ config }: { config: Configuration }) => {
     test: /\.svg$/,
     use: ['@svgr/webpack']
   })
+
+  config.plugins?.push(new webpack.DefinePlugin({
+    __IS_DEV__: true
+  }))
 
   return config
 }
