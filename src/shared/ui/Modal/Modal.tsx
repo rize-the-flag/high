@@ -3,7 +3,7 @@ import cls from './Modal.module.scss'
 import {
   type ReactNode,
   type MouseEvent,
-  useEffect, useCallback, useState
+  useEffect, useCallback, useState, useRef
 } from 'react'
 import Portal from 'shared/ui/Portal/Portal'
 
@@ -25,9 +25,10 @@ export const Modal = (props: ModalProps) => {
   } = props
 
   const [isMounted, setIsMounted] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
   const mods: Record<string, boolean> = {
-    [cls.opened]: isOpen
+    [cls.open]: isMounted
   }
 
   const closeHandler = useCallback(() => {
@@ -57,28 +58,34 @@ export const Modal = (props: ModalProps) => {
   }, [isOpen, onKeyDown])
 
   useEffect(() => {
-    isOpen && setIsMounted(true)
+    if (isOpen) {
+      timerRef.current = setTimeout(() => {
+        setIsMounted(true)
+      }, 100)
+      return () => {
+        clearTimeout(timerRef.current)
+        setIsMounted(false)
+      }
+    }
   }, [isOpen])
 
   if (lazy && !isMounted) {
     return null
   }
 
-  return (
-    <Portal>
-      <div className={classNames(cls.modal, mods, [className ?? ''])}>
-        <div className={cls.overlay} onClick={closeHandler} role='button'>
-          <div
-            className={cls.content}
-            onClick={onContentClick}
-            role='button'
-          >
-            {children}
+  return <Portal>
+          <div className={classNames(cls.modal, mods, [className ?? ''])}>
+              <div className={cls.overlay} onClick={closeHandler} role='button'>
+                  <div
+                      className={cls.content}
+                      onClick={onContentClick}
+                      role='button'
+                  >
+                    {children}
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-    </Portal>
-  )
+      </Portal>
 }
 
 export default Modal
