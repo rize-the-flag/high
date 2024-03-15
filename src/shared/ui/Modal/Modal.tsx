@@ -3,7 +3,7 @@ import cls from './Modal.module.scss'
 import {
   type ReactNode,
   type MouseEvent,
-  useEffect, useCallback, useState, useRef
+  useEffect, useCallback, useState
 } from 'react'
 import Portal from 'shared/ui/Portal/Portal'
 
