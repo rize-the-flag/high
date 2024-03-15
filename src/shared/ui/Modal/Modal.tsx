@@ -25,16 +25,13 @@ export const Modal = (props: ModalProps) => {
   } = props
 
   const [isMounted, setIsMounted] = useState(false)
-  const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
   const mods: Record<string, boolean> = {
     [cls.open]: isMounted
   }
 
   const closeHandler = useCallback(() => {
-    if (onClose) {
-      onClose()
-    }
+    onClose && onClose()
   }, [onClose])
 
   const onContentClick = (evt: MouseEvent) => {
@@ -42,50 +39,42 @@ export const Modal = (props: ModalProps) => {
   }
 
   const onKeyDown = useCallback((ev: KeyboardEvent): any => {
-    if (ev.key === 'Escape') {
-      closeHandler()
-    }
+    (ev.key === 'Escape') && closeHandler()
   }, [closeHandler])
 
   useEffect(() => {
-    if (isOpen) {
-      window.addEventListener('keydown', onKeyDown)
-    }
-
+    window.addEventListener('keydown', onKeyDown)
     return () => {
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [isOpen, onKeyDown])
+  }, [onKeyDown])
 
   useEffect(() => {
     if (isOpen) {
-      timerRef.current = setTimeout(() => {
-        setIsMounted(true)
-      }, 100)
+      setIsMounted(true)
       return () => {
-        clearTimeout(timerRef.current)
         setIsMounted(false)
       }
     }
   }, [isOpen])
 
-  if (lazy && !isMounted) {
+  if (lazy && !isOpen) {
     return null
   }
 
   return <Portal>
-          <div className={classNames(cls.modal, mods, [className ?? ''])}>
-              <div className={cls.overlay} onClick={closeHandler} role='button'>
-                  <div
-                      className={cls.content}
-                      onClick={onContentClick}
-                      role='button'
-                  >
-                    {children}
-                  </div>
-              </div>
-          </div>
-      </Portal>
+    <div className={classNames(cls.modal, mods, [className ?? ''])}>
+      <div className={cls.overlay} onClick={closeHandler} role='button'>
+        <div
+          className={cls.content}
+          onClick={onContentClick}
+          role='button'
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  </Portal>
 }
 
 export default Modal
