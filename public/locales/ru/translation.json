@@ -7,5 +7,6 @@
   "SideBarToggleButton": "<---",
   "PageNotFound": "404. Страница не найдена",
   "UncaughtError": "Произошла непредвиденная ошибка",
-  "SignInBtn": "Войти"
+  "SignInBtn": "Войти",
+  "SignOutBtn": "Выйти"
 }

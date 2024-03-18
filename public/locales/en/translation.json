@@ -7,5 +7,6 @@
   "SideBarToggleButton": "<---",
   "PageNotFound": "404. Not Found",
   "UncaughtError": "Uncaught error occurs",
-  "SignInBtn": "Sign in"
+  "SignInBtn": "Sign in",
+  "SignOutBtn": "Sign out"
 }

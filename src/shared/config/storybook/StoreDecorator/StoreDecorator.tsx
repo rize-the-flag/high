@@ -1,12 +1,13 @@
 import { type StoryFn } from '@storybook/react'
-import { StoreProvider } from 'app/providers/StoreProvider'
+import { type StateSchema, StoreProvider } from 'app/providers/StoreProvider'
+import { type DeepPartial } from 'shared/lib/genericTypes/genericTypes'
 
-export const StoreDecorator = (StoryComponent: StoryFn) => (
-  <StoreProvider initialState={{
-    counter: { value: 1 },
-    user: { authData: { id: 1, userName: 'Oleg' } },
-    loginForm: { password: '', userName: '', isLoading: false }
-  }}>
-    <StoryComponent/>
-  </StoreProvider>
-)
+export const StoreDecorator = (state: DeepPartial<StateSchema>) => {
+  const decorate = (StoryComponent: StoryFn) => (
+    <StoreProvider initialState={state as StateSchema}>
+      <StoryComponent/>
+    </StoreProvider>
+  )
+
+  return decorate
+}

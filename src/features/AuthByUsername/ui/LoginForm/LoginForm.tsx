@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginActions } from '../../model/slice/loginSlice'
 import { getLoginState } from '../../model/selectors/getLoginState/getLoginState'
 import { loginByUserName } from 'features/AuthByUsername/model/services/loginByUserName/loginByUserName'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
 
 interface LoginFormProps {
   className?: string
@@ -18,7 +19,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     className
   } = props
 
-  const { password, userName } = useSelector(getLoginState)
+  const { password, userName, error, isLoading } = useSelector(getLoginState)
 
   const dispatch = useDispatch<any>()
 
@@ -33,10 +34,11 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   const onLoginClick = () => {
     dispatch(loginByUserName({ userName, password }))
   }
+
   const { t } = useTranslation()
 
   return (
-    <div className={classNames(cls.loginForm, {}, [className ?? ''])}>
+    <form onSubmit={onLoginClick} className={classNames(cls.loginForm, {}, [className ?? ''])}>
       <Input
         autoFocus={true}
         placeholder={t('UserName')}
@@ -55,10 +57,12 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         theme={ThemeButton.OUTLINE}
         className={cls.loginBtn}
         onClick={onLoginClick}
+        disabled={isLoading}
       >
         {t('LoginBtn')}
       </Button>
-    </div>
+      {error && <Text theme={TextTheme.ERROR} message='Вы точно не правы'/>}
+    </form>
   )
 }
 
