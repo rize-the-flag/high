@@ -14,6 +14,10 @@ void i18n
       escapeValue: false // not needed for react!!
     },
 
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json'
+    },
+
     resources: { en: { translations: {} } }
   })
 
