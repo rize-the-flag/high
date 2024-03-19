@@ -19,16 +19,22 @@ export const loginSlice = createSlice({
 
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload
+    },
+
+    clearAuthData: (state) => {
+      state.password = ''
+      state.userName = ''
+      state.error = undefined
     }
   },
 
   extraReducers: (builder) => {
-    builder.addCase(loginByUserName.pending, (state, action) => {
+    builder.addCase(loginByUserName.pending, (state) => {
       state.error = undefined
       state.isLoading = true
     })
 
-    builder.addCase(loginByUserName.fulfilled, (state, action) => {
+    builder.addCase(loginByUserName.fulfilled, (state) => {
       state.isLoading = false
     })
 
@@ -40,5 +46,5 @@ export const loginSlice = createSlice({
 
 })
 
-export const { actions: loginActions } = loginSlice
-export const { reducer: loginReducer } = loginSlice
+export const { actions: loginFormActions } = loginSlice
+export const { reducer: loginFormReducer } = loginSlice

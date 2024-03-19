@@ -8,5 +8,6 @@
   "PageNotFound": "404. Not Found",
   "UncaughtError": "Uncaught error occurs",
   "SignInBtn": "Sign in",
-  "SignOutBtn": "Sign out"
+  "SignOutBtn": "Sign out",
+  "UserNotFound": "User not found"
 }
