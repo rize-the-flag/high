@@ -20,6 +20,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   } = props
 
   const { password, userName, error, isLoading } = useSelector(getLoginState)
+  const { t } = useTranslation()
 
   const dispatch = useDispatch<any>()
 
@@ -34,8 +35,6 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   const onLoginClick = () => {
     dispatch(loginByUserName({ userName, password }))
   }
-
-  const { t } = useTranslation()
 
   return (
     <form onSubmit={onLoginClick} className={classNames(cls.loginForm, {}, [className ?? ''])}>
@@ -53,6 +52,8 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         onChange={onChangePassword}
         value={password}
       />
+      {error && <Text theme={TextTheme.ERROR} message='Вы точно не правы'/>}
+
       <Button
         theme={ThemeButton.OUTLINE}
         className={cls.loginBtn}
@@ -61,7 +62,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
       >
         {t('LoginBtn')}
       </Button>
-      {error && <Text theme={TextTheme.ERROR} message='Вы точно не правы'/>}
+
     </form>
   )
 }
