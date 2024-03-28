@@ -10,7 +10,7 @@ import { LOCAL_STORAGE_THEME_KEY, type ThemeType } from 'app/providers/ThemeProv
 
 const container = document.getElementById('root')
 
-const theme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? Theme.LIGHT
+const theme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? Theme.LIGHT) as ThemeType
 
 document.body.className = theme
 
@@ -20,7 +20,7 @@ if (container !== null) {
     <StoreProvider>
       <BrowserRouter>
         <ErrorBoundary>
-          <ThemeProvider initialTheme={theme as ThemeType}>
+          <ThemeProvider initialTheme={theme}>
             <App/>
           </ThemeProvider>
         </ErrorBoundary>

@@ -1,6 +1,13 @@
 .button {
   cursor: pointer;
   padding: 10px;
+
+  &:disabled {
+
+    color: var(--disabled-button);
+    border-color: var(--disabled-button);
+
+  }
 }
 
 .clear,
@@ -13,7 +20,7 @@
 }
 
 .clearInverted {
- color: var(--primary-inverted-color);
+  color: var(--primary-inverted-color);
 }
 
 .outline {
