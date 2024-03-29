@@ -22,9 +22,9 @@ type Story = StoryObj<typeof meta>
 
 const loginForm: StateSchema['loginForm'] = {
   error: undefined,
-  password: '1234',
+  password: '',
   isLoading: false,
-  userName: 'aaaa'
+  userName: ''
 }
 
 export const PrimaryLight: Story = {

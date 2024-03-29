@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './Navbar.module.scss'
 import Button, { ThemeButton } from 'shared/ui/Button/Button'
@@ -18,13 +18,17 @@ export const Navbar = ({ className }: NavbarProps) => {
   const dispatch = useDispatch()
   const auth = useSelector(getAuthData)
 
-  const toggleSignIn = useCallback(() => {
-    setIsAuthOpen(isOpen => !isOpen)
-  }, [])
+  const onShowModal = () => {
+    setIsAuthOpen(true)
+  }
+
+  const onCloseModal = () => {
+    setIsAuthOpen(false)
+  }
 
   const signOut = () => {
-    dispatch(userActions.signOut())
     localStorage.removeItem(USER_LOCAL_STORAGE_KEY)
+    dispatch(userActions.logOut())
   }
 
   useEffect(() => {
@@ -32,17 +36,37 @@ export const Navbar = ({ className }: NavbarProps) => {
     isUser(user) && dispatch(userActions.setAuthData(user))
   }, [dispatch])
 
+  if (auth) {
+    return (
+      <div className={classNames(cls.navbar, {}, [className ?? ''])}>
+        <div className={cls.links}>
+          <Button
+            theme={ThemeButton.CLEAR_INVERTED}
+            onClick={signOut}
+          >
+            {t('SignOutBtn')}
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={classNames(cls.navbar, {}, [className ?? ''])}>
-      {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={toggleSignIn}/>}
       <div className={cls.links}>
         <Button
           theme={ThemeButton.CLEAR_INVERTED}
-          onClick={auth ? signOut : toggleSignIn}
+          onClick={onShowModal}
         >
-          {auth ? t('SignOutBtn') : t('SignInBtn')}
+          {t('SignInBtn')}
         </Button>
       </div>
+      {isAuthModal && (
+        <LoginModal
+          isOpen={isAuthModal}
+          onClose={onCloseModal}
+        />
+      )}
     </div>
   )
 }

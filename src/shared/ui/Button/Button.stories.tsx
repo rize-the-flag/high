@@ -18,12 +18,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
-  args: {
-    children: 'Text'
-  }
-}
-
 export const OutlineLight: Story = {
   args: {
     children: 'Text',
@@ -68,14 +62,20 @@ export const BackgroundTheme: Story = {
   args: {
     children: 'Text',
     theme: ThemeButton.BACKGROUND
-  }
+  },
+  decorators: [
+    ThemeDecorator(Theme.DARK)
+  ]
 }
 
 export const InvertedBackground: Story = {
   args: {
     children: 'Text',
     theme: ThemeButton.BACKGROUND_INVERTED
-  }
+  },
+  decorators: [
+    ThemeDecorator(Theme.DARK)
+  ]
 }
 
 export const SquareSmall: Story = {
@@ -84,7 +84,10 @@ export const SquareSmall: Story = {
     theme: ThemeButton.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.M
-  }
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
 }
 
 export const SquareLarge: Story = {
@@ -93,7 +96,10 @@ export const SquareLarge: Story = {
     theme: ThemeButton.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.L
-  }
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
 }
 
 export const SquareExtraLarge: Story = {
@@ -102,5 +108,41 @@ export const SquareExtraLarge: Story = {
     theme: ThemeButton.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.XL
-  }
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
+}
+
+export const OutlineM: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.OUTLINE,
+    size: ButtonSize.M
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
+}
+
+export const OutlineL: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.OUTLINE,
+    size: ButtonSize.L
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
+}
+
+export const OutlineXL: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.OUTLINE,
+    size: ButtonSize.XL
+  },
+  decorators: [
+    ThemeDecorator(Theme.LIGHT)
+  ]
 }

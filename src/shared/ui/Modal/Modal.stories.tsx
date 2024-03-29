@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>
 
 export const ModalLight: Story = {
   args: {
-    children: '<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi atque commodi consectetur dolor dolorum ea.</div>',
+    children: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi atque commodi consectetur dolor dolorum ea',
     isOpen: true
   },
   decorators: [ThemeDecorator(Theme.LIGHT)]
@@ -28,7 +28,7 @@ export const ModalLight: Story = {
 
 export const ModalDark: Story = {
   args: {
-    children: '<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi atque commodi consectetur dolor dolorum ea.</div>',
+    children: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi atque commodi consectetur dolor dolorum ea',
     isOpen: true
   },
   decorators: [ThemeDecorator(Theme.DARK)]

@@ -11,7 +11,7 @@ export const userSlice = createSlice({
       state.authData = action.payload
     },
 
-    signOut: (state) => {
+    logOut: (state) => {
       state.authData = undefined
     }
   }
