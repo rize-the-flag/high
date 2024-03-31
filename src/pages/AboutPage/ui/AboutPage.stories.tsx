@@ -22,7 +22,7 @@ export const PrimaryLight: Story = {
   args: {},
   decorators: [
     ThemeDecorator(Theme.LIGHT),
-    StoreDecorator({ counter: { value: 0 } })
+    StoreDecorator({ counter: { value: 42 } })
   ]
 }
 
@@ -30,6 +30,6 @@ export const PrimaryDark: Story = {
   args: {},
   decorators: [
     ThemeDecorator(Theme.DARK),
-    StoreDecorator({ counter: { value: 0 } })
+    StoreDecorator({ counter: { value: 42 } })
   ]
 }
