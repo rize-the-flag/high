@@ -19,20 +19,11 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const loginState = {
-  user: {
-    authData: {
-      id: 1,
-      userName: 'SomeUser'
-    }
-  }
-}
-
 export const PrimaryLight: Story = {
   args: {},
   decorators: [
     ThemeDecorator(Theme.LIGHT),
-    StoreDecorator(loginState)
+    StoreDecorator({})
   ]
 }
 
@@ -40,6 +31,26 @@ export const PrimaryDark: Story = {
   args: {},
   decorators: [
     ThemeDecorator(Theme.DARK),
-    StoreDecorator(loginState)
+    StoreDecorator({})
+  ]
+}
+
+export const Loading: Story = {
+  args: {},
+  decorators: [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({ loginForm: { isLoading: true } })
+  ]
+}
+
+export const WithError: Story = {
+  args: {},
+  decorators: [
+    ThemeDecorator(Theme.LIGHT),
+    StoreDecorator({
+      loginForm: {
+        error: 'Password or login incorrect'
+      }
+    })
   ]
 }

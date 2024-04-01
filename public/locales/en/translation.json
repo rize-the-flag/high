@@ -9,5 +9,8 @@
   "UncaughtError": "Uncaught error occurs",
   "SignInBtn": "Sign in",
   "SignOutBtn": "Sign out",
-  "UserNotFound": "User not found"
+  "UserName": "user",
+  "Password": "password",
+  "LoginBtn": "login",
+  "AuthorizationFormTitle": "Authorization"
 }

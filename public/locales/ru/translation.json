@@ -9,5 +9,8 @@
   "UncaughtError": "Произошла непредвиденная ошибка",
   "SignInBtn": "Войти",
   "SignOutBtn": "Выйти",
-  "UserNotFound": "Пользователь не найден"
+  "UserName": "Имя пользователя",
+  "Password": "Пароль",
+  "LoginBtn": "Войти",
+  "AuthorizationFormTitle": "Авторизация"
 }

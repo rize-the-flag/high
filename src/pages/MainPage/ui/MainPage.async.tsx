@@ -1,8 +1,7 @@
-import React, { type JSX } from 'react'
+import { lazy } from 'react'
+import { asyncDelay } from 'shared/lib/asyncDelay/asyncDelay'
 
-interface LazyImport {
-  readonly default: () => JSX.Element
-}
-export const MainPageAsync = React.lazy(async () => await new Promise<LazyImport>((resolve) => {
-  setTimeout(() => { resolve(import('./MainPage')) }, 2000)
-}))
+export const MainPageAsync = lazy(async () => {
+  await asyncDelay(2000)
+  return await import('./MainPage')
+})
