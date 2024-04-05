@@ -4,7 +4,7 @@ import { type FC, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import Button, { ThemeButton } from 'shared/ui/Button/Button'
 import Input from 'shared/ui/Input/Input'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { loginFormActions, loginFormReducer } from '../../model/slice/loginSlice'
 import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
@@ -14,14 +14,17 @@ import { getIsLoading } from 'features/AuthByUsername/model/selectors/getIsLoadi
 import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
 import { type StateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 import { useDynamicReducer } from 'shared/hooks/UseDynamicReducer/useDynamicReducer'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 
 interface LoginFormProps {
   className?: string
+  onSuccess: () => void
 }
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const {
-    className
+    className,
+    onSuccess
   } = props
 
   const userName = useSelector(getUserName)
@@ -31,7 +34,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
 
   const { t } = useTranslation()
 
-  const dispatch = useDispatch<any>()
+  const dispatch = useAppDispatch()
 
   const onChangeUserName = useCallback((value: string) => {
     dispatch(loginFormActions.setUserName(value))
@@ -41,14 +44,20 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     dispatch(loginFormActions.setPassword(value))
   }, [dispatch])
 
-  const onLoginClick = () => {
-    dispatch(loginByUserName({ userName, password }))
-  }
+  const onLoginClick = useCallback(async () => {
+    const result = await dispatch(loginByUserName({ userName, password }))
+    if (result.meta.requestStatus === 'fulfilled') {
+      onSuccess()
+    }
+  }, [dispatch, onSuccess, password, userName])
 
   useDynamicReducer<StateSchema>('loginForm', loginFormReducer)
 
   return (
-    <form onSubmit={onLoginClick} className={classNames(cls.loginForm, {}, [className ?? ''])}>
+    <form
+      onSubmit={onLoginClick}
+      className={classNames(cls.loginForm, {}, [className ?? ''])}
+    >
       <h3>{t('AuthorizationFormTitle')}</h3>
       <Input
         autoFocus={true}

@@ -10,9 +10,11 @@ export function useDynamicReducer<TState extends Record<string, any>> (slice: ke
   useEffect(() => {
     state.reducerManager.add(slice, reducer)
     dispatch({ type: `@INIT ASYNC ${String(slice)}` })
+    console.log(state.getState())
     return () => {
       state.reducerManager.remove(slice)
       dispatch({ type: `@DESTROY ASYNC ${String(slice)}` })
+      console.log(state.getState())
     }
-  }, [dispatch, reducer, slice, state.reducerManager])
+  }, [dispatch, reducer, slice, state, state.reducerManager])
 }

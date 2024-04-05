@@ -36,8 +36,6 @@ export const Navbar = ({ className }: NavbarProps) => {
     isUser(user) && dispatch(userActions.setAuthData(user))
   }, [dispatch])
 
-  console.log(auth)
-
   if (auth) {
     return (
       <div className={classNames(cls.navbar, {}, [className ?? ''])}>

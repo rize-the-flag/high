@@ -5,11 +5,15 @@ import {
 import { type StateSchema } from 'app/providers/StoreProvider/config/StateSchema'
 import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
-import { createReducerManager, type StoreWithReducerManager } from 'shared/lib/reducerManager/createReducerManager'
+import {
+  createReducerManager,
+  type ReducerManager
+} from 'shared/lib/reducerManager/createReducerManager'
 
-export const createReduxStore = (
+export function createReduxStore (
   initialState?: StateSchema,
-  asyncReducers?: ReducersMapObject<StateSchema>): StoreWithReducerManager<StateSchema> => {
+  asyncReducers?: ReducersMapObject<StateSchema>
+) {
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     counter: counterReducer,
@@ -21,10 +25,14 @@ export const createReduxStore = (
   const store = configureStore<StateSchema>({
     reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
-    preloadedState: initialState
-  }) as StoreWithReducerManager<StateSchema>
+    preloadedState: initialState,
+    middleware: getDefaultMiddleware => getDefaultMiddleware({ thunk: true })
+  });
 
-  store.reducerManager = reducerManager
+  (store as (typeof store & { reducerManager: ReducerManager<StateSchema> })).reducerManager = reducerManager
 
-  return store
+  return store as (typeof store & { reducerManager: ReducerManager<StateSchema> })
 }
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']
+export type AppState = ReturnType<typeof createReduxStore>['getState']

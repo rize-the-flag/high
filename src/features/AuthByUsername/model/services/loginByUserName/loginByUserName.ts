@@ -1,15 +1,19 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { type User, userActions } from 'entities/User'
 import i18n from 'shared/config/i18n/i18n'
 import { USER_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
+import { type AppDispatch } from 'app/providers/StoreProvider'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
 interface LoginByUserNameProps {
   userName: string
   password: string
 }
 
-export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, { rejectValue: string }>(
+export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, {
+  dispatch: AppDispatch
+  rejectValue: string
+}>(
   'login/loginByUserName',
   async (authData, thunkApi) => {
     try {
@@ -23,4 +27,6 @@ export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, { re
   }
 )
 
-export const storeAuthToLocalStorage = (userData: User) => { localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(userData)) }
+export const storeAuthToLocalStorage = (userData: User) => {
+  localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(userData))
+}
