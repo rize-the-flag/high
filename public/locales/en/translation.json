@@ -11,6 +11,6 @@
   "SignOutBtn": "Sign out",
   "UserName": "user",
   "Password": "password",
-  "LoginBtn": "login",
+  "LoginFormAuthBtn": "Login",
   "AuthorizationFormTitle": "Authorization"
 }

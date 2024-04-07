@@ -12,5 +12,6 @@
   "UserName": "Имя пользователя",
   "Password": "Пароль",
   "LoginBtn": "Войти",
-  "AuthorizationFormTitle": "Авторизация"
+  "AuthorizationFormTitle": "Авторизация",
+  "LoginFormAuthBtn": "Войти"
 }

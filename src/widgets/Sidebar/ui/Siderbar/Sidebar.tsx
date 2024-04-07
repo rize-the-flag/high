@@ -3,12 +3,9 @@ import cls from './Sidebar.module.scss'
 import React, { useState } from 'react'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { LangSwitcher } from 'widgets/LangSwitcher'
-import { useTranslation } from 'react-i18next'
 import { Button, ButtonSize, ThemeButton } from 'shared/ui/Button/Button'
-import AppLink from 'shared/ui/AppLink/AppLink'
-import { RoutePath } from 'shared/config/route-config/route-config'
-import AboutIcon from 'shared/assets/icons/about-20-20.svg'
-import MainIcon from 'shared/assets/icons/main-20-20.svg'
+import { SidebarItemList } from 'widgets/Sidebar/model/items'
+import { SidebarItem } from 'widgets/Sidebar/ui/SidebarItem/SidebarItem'
 
 interface SidebarProps {
   className?: string
@@ -16,7 +13,6 @@ interface SidebarProps {
 
 export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false)
-  const { t } = useTranslation()
   const onToggle = () => {
     setCollapsed(collapsed => !collapsed)
   }
@@ -36,21 +32,13 @@ export const Sidebar = ({ className }: SidebarProps) => {
         {collapsed ? '>' : '<'}
       </Button>
       <div className={cls.items}>
-
-        <AppLink to={RoutePath.main} className={cls.item}>
-          <MainIcon className={cls.icon}/>
-          <span className={cls.link}>
-              {t('MenuLinkMain')}
-            </span>
-        </AppLink>
-
-        <AppLink to={RoutePath.about} className={cls.item}>
-          <AboutIcon className={cls.icon}/>
-          <span className={cls.link}>
-              {t('MenuLinkAbout')}
-            </span>
-        </AppLink>
-
+        {SidebarItemList.map((item) => (
+          <SidebarItem
+            key={item.path}
+            item={item}
+            collapsed={collapsed}
+          />
+        ))}
       </div>
       <div className={classNames(cls.switchers)}>
         <LangSwitcher

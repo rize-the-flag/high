@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './LoginForm.module.scss'
 import { type FC, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import Button, { ThemeButton } from 'shared/ui/Button/Button'
+import { ThemeButton, Button } from 'shared/ui/Button/Button'
 import Input from 'shared/ui/Input/Input'
 import { useSelector } from 'react-redux'
 import { loginFormActions, loginFormReducer } from '../../model/slice/loginSlice'
@@ -82,7 +82,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         onClick={onLoginClick}
         disabled={isLoading}
       >
-        {t('LoginBtn')}
+        {t('LoginFormAuthBtn')}
       </Button>
 
     </form>

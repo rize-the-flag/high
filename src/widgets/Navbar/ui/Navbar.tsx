@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './Navbar.module.scss'
-import Button, { ThemeButton } from 'shared/ui/Button/Button'
+import { ThemeButton, Button } from 'shared/ui/Button/Button'
 import { useTranslation } from 'react-i18next'
 import { LoginModal } from 'features/AuthByUsername'
 import { USER_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
@@ -33,7 +33,9 @@ export const Navbar = ({ className }: NavbarProps) => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '{}')
-    isUser(user) && dispatch(userActions.setAuthData(user))
+    if (isUser(user)) {
+      dispatch(userActions.setAuthData(user))
+    }
   }, [dispatch])
 
   if (auth) {
@@ -61,6 +63,7 @@ export const Navbar = ({ className }: NavbarProps) => {
           {t('SignInBtn')}
         </Button>
       </div>
+
       {isAuthModal && (
         <LoginModal
           isOpen={isAuthModal}
