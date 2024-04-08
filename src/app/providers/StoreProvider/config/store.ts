@@ -9,10 +9,13 @@ import {
   createReducerManager,
   type ReducerManager
 } from 'shared/lib/reducerManager/createReducerManager'
+import { $api } from 'shared/api/api'
+import { type NavigateFunction } from 'react-router-dom'
 
 export function createReduxStore (
   initialState?: StateSchema,
-  asyncReducers?: ReducersMapObject<StateSchema>
+  asyncReducers?: ReducersMapObject<StateSchema>,
+  navigate?: NavigateFunction
 ) {
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
@@ -26,7 +29,14 @@ export function createReduxStore (
     reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
     preloadedState: initialState,
-    middleware: getDefaultMiddleware => getDefaultMiddleware({ thunk: true })
+    middleware: getDefaultMiddleware => getDefaultMiddleware({
+      thunk: {
+        extraArgument: {
+          api: $api,
+          navigate
+        }
+      }
+    })
   });
 
   (store as (typeof store & { reducerManager: ReducerManager<StateSchema> })).reducerManager = reducerManager

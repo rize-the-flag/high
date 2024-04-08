@@ -21,7 +21,7 @@ server.use((_, res, next) => {
 
 //Middleware for response delay
 server.use((req, res, next) => {
-    new Promise((resolve, reject) => {
+    new Promise((resolve) => {
         setTimeout(() => {
             resolve()
         }, 800)
@@ -47,7 +47,7 @@ server.post('/login', (req, res) => {
     const user = login.find((user) => user.userName === userName);
     if (user && user.password === password) {
         console.log(user)
-        return res.status(200).json({userId: user.id})
+        return res.status(200).json({userId: user.id, userName: user.userName})
     }
     res.status(403).json({message: 'AUTH ERROR'})
 })
@@ -55,7 +55,7 @@ server.post('/login', (req, res) => {
 
 server.use(router)
 
-server.listen(PORT, (a) => {
+server.listen(PORT, () => {
     console.log(`JSON Server is Running on port ${PORT}`)
 })
 

@@ -53,11 +53,12 @@ module.exports = {
         "@typescript-eslint/prefer-nullish-coalescing": "off"
     },
     "settings": {
-        "react":{
+        "react": {
             "version": "detect",
         }
     },
     "globals": {
-        '__IS_DEV__': true
+        __IS_DEV__: true,
+        __API__: true
     }
 }
