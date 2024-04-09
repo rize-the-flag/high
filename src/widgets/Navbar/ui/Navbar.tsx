@@ -45,6 +45,7 @@ export const Navbar = ({ className }: NavbarProps) => {
           <Button
             theme={ThemeButton.CLEAR_INVERTED}
             onClick={signOut}
+            data-testid='signOutBtn'
           >
             {t('SignOutBtn')}
           </Button>
@@ -59,6 +60,7 @@ export const Navbar = ({ className }: NavbarProps) => {
         <Button
           theme={ThemeButton.CLEAR_INVERTED}
           onClick={onShowModal}
+          data-testid='signInBtn'
         >
           {t('SignInBtn')}
         </Button>

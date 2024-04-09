@@ -2,7 +2,7 @@ import {
   type ActionFromReducer,
   combineReducers, type EnhancedStore,
   type Reducer, type ReducerFromReducersMapObject,
-  type ReducersMapObject, type UnknownAction
+  type ReducersMapObject, type StateFromReducersMapObject, type UnknownAction
 } from '@reduxjs/toolkit'
 
 export interface ReducerManager<TState extends Record<string, any>> {
@@ -17,7 +17,7 @@ export interface StoreWithReducerManager<TState extends Record<string, any>> ext
 }
 
 export function createReducerManager<
-  TState extends Record<string, any>,
+  TState extends Record<string, any> = object,
 > (initialReducers: ReducersMapObject<TState>) {
   const reducers = { ...initialReducers }
   let combinedReducer = combineReducers(reducers)
@@ -32,7 +32,7 @@ export function createReducerManager<
 
     getReducerMap: () => reducers,
 
-    reduce: (state: TState, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>) => {
+    reduce: (state: StateFromReducersMapObject<ReducersMapObject<TState>>, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>): StateFromReducersMapObject<ReducersMapObject<TState>> => {
       if (keysToRemove.length > 0) {
         state = { ...state }
         keysToRemove.forEach((key) => {

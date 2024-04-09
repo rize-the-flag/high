@@ -29,7 +29,7 @@ server.use((req, res, next) => {
 })
 
 const isAuthorized = (request) => {
-    return 'authorization' in request.headers;
+    return 'Authorization' in request.headers;
 }
 
 //Middle ware for Auth check

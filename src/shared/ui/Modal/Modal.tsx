@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames, type Mods } from 'shared/lib/classNames/classNames'
 import cls from './Modal.module.scss'
 import {
   type ReactNode,
@@ -28,7 +28,7 @@ export const Modal = (props: ModalProps) => {
   const [isMounted, setIsMounted] = useState(false)
   const { theme } = useTheme()
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.open]: isMounted
   }
 
