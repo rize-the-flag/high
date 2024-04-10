@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames'
-import { useTranslation } from 'react-i18next'
 import { useDynamicReducer } from 'shared/hooks/UseDynamicReducer/useDynamicReducer'
 import { type StateSchema } from 'app/providers/StoreProvider'
 import {

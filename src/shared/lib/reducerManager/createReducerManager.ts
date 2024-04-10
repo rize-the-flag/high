@@ -1,8 +1,11 @@
 import {
   type ActionFromReducer,
-  combineReducers, type EnhancedStore,
-  type Reducer, type ReducerFromReducersMapObject,
-  type ReducersMapObject, type StateFromReducersMapObject, type UnknownAction
+  combineReducers,
+  type EnhancedStore,
+  type Reducer,
+  type ReducerFromReducersMapObject,
+  type ReducersMapObject,
+  type UnknownAction
 } from '@reduxjs/toolkit'
 
 export interface ReducerManager<TState extends Record<string, any>> {
@@ -20,7 +23,7 @@ export function createReducerManager<
   TState extends Record<string, any> = object,
 > (initialReducers: ReducersMapObject<TState>) {
   const reducers = { ...initialReducers }
-  let combinedReducer = combineReducers(reducers)
+  let combinedReducer = combineReducers<ReducersMapObject<TState>>(reducers)
   let keysToRemove: Array<keyof TState> = []
 
   return {
@@ -32,16 +35,15 @@ export function createReducerManager<
 
     getReducerMap: () => reducers,
 
-    reduce: (state: StateFromReducersMapObject<ReducersMapObject<TState>>, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>): StateFromReducersMapObject<ReducersMapObject<TState>> => {
-      if (keysToRemove.length > 0) {
+    reduce: (state: TState | undefined, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>) => {
+      if (keysToRemove.length > 0 && state) {
         state = { ...state }
         keysToRemove.forEach((key) => {
           // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-          delete state[key]
+          delete state?.[key]
         })
         keysToRemove = []
       }
-
       return combinedReducer(state, action)
     },
 

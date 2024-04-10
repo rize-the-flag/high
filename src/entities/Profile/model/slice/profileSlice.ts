@@ -13,13 +13,13 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchProfileData.pending, (state) => {
+      state.isLoading = true
+    })
+
     builder.addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
       state.data = action.payload
       state.isLoading = false
-    })
-
-    builder.addCase(fetchProfileData.pending, (state) => {
-      state.isLoading = true
     })
 
     builder.addCase(fetchProfileData.rejected, (state, action) => {

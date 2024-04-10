@@ -5,11 +5,14 @@ import { type ProfileSchema } from 'entities/Profile'
 import { type AxiosInstance } from 'axios'
 import { type NavigateFunction } from 'react-router-dom'
 
-export interface StateSchema {
+export interface StateSchema extends AsyncState, PersistentState {}
+
+export interface PersistentState {
   counter: CounterSchema
   user: UserSchema
+}
 
-  // Async reducers
+export interface AsyncState {
   loginForm?: LoginSchema
   profile?: ProfileSchema
 }
@@ -18,7 +21,7 @@ export type StateSchemaKeys = keyof StateSchema
 
 export interface ThunkExtraArg {
   api: AxiosInstance
-  navigate: NavigateFunction
+  navigate?: NavigateFunction
 }
 
 export interface ThunkConfig<T> {
