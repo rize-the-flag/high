@@ -13,6 +13,10 @@ export {
 } from './model/services/fetchProfileData/fetchProfileData'
 
 export {
+  saveProfileData
+} from './model/services/saveProfileData/saveProfileData'
+
+export {
   getUserProfile
 } from './model/selectors/getUserProfile/getUserProfile'
 
@@ -23,6 +27,14 @@ export {
 export {
   getIsProfileError
 } from './model/selectors/getIsProfileError/getIsProfileError'
+
+export {
+  getProfileReadonly
+} from './model/selectors/getProfileReadonly/getProfileReadonly'
+
+export {
+  getProfileFormData
+} from './model/selectors/getProfileFormData/getProfileFormData'
 
 export {
   ProfileCard

@@ -13,5 +13,10 @@
   "UserName": "user",
   "Password": "password",
   "LoginFormAuthBtn": "Login",
-  "AuthorizationFormTitle": "Authorization"
+  "AuthorizationFormTitle": "Authorization",
+  "UserProfile": "Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "age": "Age",
+  "EditProfileButton": "Edit"
 }

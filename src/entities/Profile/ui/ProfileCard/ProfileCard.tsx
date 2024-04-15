@@ -1,51 +1,81 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ProfileCard.module.scss'
 import { type FC } from 'react'
-import { useSelector } from 'react-redux'
-import { getUserProfile } from 'entities/Profile'
-import { Text } from 'shared/ui/Text/Text'
+import { type Profile } from '../../model/types/profile'
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text'
 import { useTranslation } from 'react-i18next'
-import { Button, ThemeButton } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
+import Loader from 'shared/ui/Loader/Loader'
 
 interface ProfileCardProps {
   className?: string
+  data?: Profile
+  error?: string
+  isLoading?: boolean
+  readonly?: boolean
+  onChangeFirstName?: (value: string) => void
+  onChangeLastName?: (value: string) => void
+  onChangeAge?: (value: string) => void
 }
 
 export const ProfileCard: FC<ProfileCardProps> = (props) => {
   const {
-    className
+    className,
+    data,
+    isLoading,
+    error,
+    readonly = true,
+    onChangeLastName,
+    onChangeFirstName,
+    onChangeAge
   } = props
 
-  const profileData = useSelector(getUserProfile)
   const { t } = useTranslation()
+
+  if (isLoading) {
+    return (
+      <div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>
+        <Loader/>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+        <Text
+          title={t('FetchingProfileDataError')}
+          message={t('Попробуйте обновить страницу')}
+          theme={TextTheme.ERROR}
+          align={TextAlign.CENTER}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className={classNames(cls.ProfileCard, {}, [className])}>
-      <div className={cls.header}>
-        <Text title={t('UserProfile')}/>
-        <Button
-          theme={ThemeButton.OUTLINE}
-          className={cls.editBtn}
-        >
-          {t('EditProfileButton')}
-        </Button>
-      </div>
       <div className={cls.data}>
         <Input
-          value={profileData?.first}
+          value={data?.first}
           className={cls.input}
           placeholder={t('firstName')}
+          onChange={onChangeFirstName}
+          readonly={readonly}
         />
         <Input
-          value={profileData?.lastname}
+          value={data?.lastname}
           className={cls.input}
           placeholder={t('lastName')}
+          onChange={onChangeLastName}
+          readonly={readonly}
         />
         <Input
-          value={profileData?.age.toString()}
+          value={data?.age?.toString()}
           className={cls.input}
           placeholder={t('Age')}
+          onChange={onChangeAge}
+          readonly={readonly}
         />
       </div>
     </div>

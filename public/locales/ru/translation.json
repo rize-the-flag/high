@@ -14,5 +14,10 @@
   "Password": "Пароль",
   "LoginBtn": "Войти",
   "AuthorizationFormTitle": "Авторизация",
-  "LoginFormAuthBtn": "Войти"
+  "LoginFormAuthBtn": "Войти",
+  "UserProfile": "Профиль",
+  "firstName": "Ваше имя",
+  "lastName": "Ваша фамилия",
+  "Age": "Возраст",
+  "EditProfileButton": "Редактировать"
 }

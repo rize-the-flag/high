@@ -17,6 +17,11 @@
   &:focus {
     outline: none;
   }
+
+}
+
+.readonly {
+  opacity: .7;
 }
 
 .caretWrapper {

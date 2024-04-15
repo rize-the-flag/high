@@ -49,6 +49,8 @@ export function createReducerManager<
 
     remove: (key: keyof TState) => {
       if (!key || !reducers[key]) return
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete reducers[key]
       keysToRemove.push(key)
       combinedReducer = combineReducers(reducers)
     }

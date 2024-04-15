@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Text, TextTheme } from './Text'
+import { Text, TextAlign, TextTheme } from './Text'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
 
@@ -50,6 +50,36 @@ export const ErrorDark: Story = {
     theme: TextTheme.ERROR,
     title: 'Text',
     message: 'Text'
+  },
+  decorators: [ThemeDecorator(Theme.DARK)]
+}
+
+export const AlignCenter: Story = {
+  args: {
+    theme: TextTheme.PRIMARY,
+    title: 'Text',
+    message: 'Text',
+    align: TextAlign.CENTER
+  },
+  decorators: [ThemeDecorator(Theme.DARK)]
+}
+
+export const AlignLeft: Story = {
+  args: {
+    theme: TextTheme.PRIMARY,
+    title: 'Text',
+    message: 'Text',
+    align: TextAlign.LEFT
+  },
+  decorators: [ThemeDecorator(Theme.DARK)]
+}
+
+export const AlignRight: Story = {
+  args: {
+    theme: TextTheme.PRIMARY,
+    title: 'Text',
+    message: 'Text',
+    align: TextAlign.RIGHT
   },
   decorators: [ThemeDecorator(Theme.DARK)]
 }
