@@ -4,6 +4,8 @@ import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { type SidebarItemType } from 'widgets/Sidebar/model/items'
 import { classNames } from 'shared/lib/classNames/classNames'
+import { useSelector } from 'react-redux'
+import { getAuthData } from 'entities/User'
 
 interface SidebarItemProps {
   item: SidebarItemType
@@ -12,6 +14,11 @@ interface SidebarItemProps {
 
 export const _SidebarItem = ({ item, collapsed }: SidebarItemProps) => {
   const { t } = useTranslation()
+  const isAuth = useSelector(getAuthData)
+
+  if (item.authOnly && !isAuth) {
+    return null
+  }
 
   const mods = {
     [cls.collapsed]: collapsed
