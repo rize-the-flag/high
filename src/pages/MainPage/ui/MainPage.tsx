@@ -7,7 +7,7 @@ const MainPage = () => {
   const [value, setValue] = useState('')
 
   return (
-    <div>
+    <div style={{ color: 'green' }}>
       {t('MainPage')}
       <Input
         placeholder='Name'

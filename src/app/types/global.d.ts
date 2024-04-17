@@ -19,6 +19,8 @@ declare module '*.svg' {
 declare const __IS_DEV__: boolean
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare const __API__: string
+// eslint-disable-next-line @typescript-eslint/naming-convention
+declare const __PROJECT__: 'frontend' | 'storybook' | 'jest'
 
 declare module 'global' {
   export type valueOf<T extends Record<string | number | symbol, unknown>> = T[keyof T]
