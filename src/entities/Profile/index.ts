@@ -37,5 +37,9 @@ export {
 } from './model/selectors/getProfileFormData/getProfileFormData'
 
 export {
+  getProfileErrors
+} from './model/selectors/getProfileErrors/getProfileErrors'
+
+export {
   ProfileCard
 } from './ui/ProfileCard/ProfileCard'

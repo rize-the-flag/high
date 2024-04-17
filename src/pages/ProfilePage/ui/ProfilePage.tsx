@@ -4,7 +4,9 @@ import { type StateSchema } from 'app/providers/StoreProvider'
 import {
   fetchProfileData,
   getIsProfileError,
-  getIsProfileLoading, getProfileFormData,
+  getIsProfileLoading,
+  getProfileErrors,
+  getProfileFormData,
   getProfileReadonly,
   profileActions,
   ProfileCard,
@@ -18,6 +20,9 @@ import { isCurrency } from 'entities/Profile/model/guards/isCurrency'
 import { isCountry } from 'entities/Profile/model/guards/isCountry'
 import { type Currency } from 'entities/Currency'
 import { type Country } from 'entities/Country/model/types/country'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { ValidateProfileError } from 'entities/Profile/model/types/profile'
+import { useTranslation } from 'react-i18next'
 
 interface ProfilePageProps {
   className?: string
@@ -31,6 +36,17 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   const isLoading = useSelector(getIsProfileLoading)
   const error = useSelector(getIsProfileError)
   const readonly = useSelector(getProfileReadonly)
+  const validateErrors = useSelector(getProfileErrors)
+  const { t } = useTranslation()
+
+  const validateErrorTranslates = {
+    [ValidateProfileError.SERVER_ERROR]: t('ServerError'),
+    [ValidateProfileError.NO_DATA]: t('NoProfileData'),
+    [ValidateProfileError.INVALID_USERNAME]: t('IncorrectUserName'),
+    [ValidateProfileError.INCORRECT_COUNTRY]: t('IncorrectCountry'),
+    [ValidateProfileError.INCORRECT_AGE]: t('IncorrectAge'),
+    [ValidateProfileError.INCORRECT_USER_DATA]: t('IncorrectUserData')
+  }
 
   const onChangeFirstName = useCallback((value: string) => {
     dispatch(profileActions.updateProfile({
@@ -94,6 +110,13 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   return (
     <div className={classNames('', {}, [className ?? ''])}>
       <ProfilePageHeader/>
+      {validateErrors?.length && validateErrors.map(error => (
+        <Text
+          key={error}
+          theme={TextTheme.ERROR}
+          message={validateErrorTranslates[error]}
+        />
+      ))}
       <ProfileCard
         data={profileData}
         isLoading={isLoading}
