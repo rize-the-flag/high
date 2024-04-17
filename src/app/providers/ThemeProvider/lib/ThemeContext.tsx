@@ -3,7 +3,8 @@ import { type valueOf } from 'global'
 
 export const Theme = {
   LIGHT: 'app_light_theme',
-  DARK: 'app_dark_theme'
+  DARK: 'app_dark_theme',
+  BLUE: 'app_blue_theme'
 } as const
 
 export type ThemeType = valueOf<typeof Theme>

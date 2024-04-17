@@ -25,11 +25,11 @@
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
   background: none;
+}
 
-  &Inverted {
-    border: 1px solid var(--primary-inverted-color);
-    color: var(--primary-inverted-color);
-  }
+.outlineInverted {
+  border: 1px solid var(--primary-inverted-color);
+  color: var(--primary-inverted-color);
 }
 
 .background {

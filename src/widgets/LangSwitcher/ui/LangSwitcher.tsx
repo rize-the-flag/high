@@ -24,7 +24,7 @@ const _LangSwitcher = (props: LangSwitcherProps) => {
     <Button
       className={classNames('', {}, [className ?? ''])}
       onClick={toggle}
-      theme={ThemeButton.OUTLINE}
+      theme={ThemeButton.OUTLINE_INVERTED}
     >
       {t(short ? 'LanguageShort' : 'Language')}
     </Button>
