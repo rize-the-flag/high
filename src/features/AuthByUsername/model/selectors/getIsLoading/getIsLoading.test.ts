@@ -14,8 +14,6 @@ describe('getIsLoading.test', () => {
   })
 
   test('Should work with empty state', () => {
-    const state: DeepPartial<StateSchema> = {}
-
-    expect(getIsLoading(state as StateSchema)).toEqual(false)
+    expect(getIsLoading({} as StateSchema)).toEqual(false)
   })
 })

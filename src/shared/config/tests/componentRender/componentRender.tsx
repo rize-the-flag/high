@@ -15,13 +15,13 @@ const ComponentRender = (Component: ReactNode, options: Options = {}) => {
   const { route, initialState } = options
 
   render(
-    <StoreProvider initialState={initialState as StateSchema}>
-      <MemoryRouter initialEntries={[route ?? '/']}>
+    <MemoryRouter initialEntries={[route ?? '/']}>
+      <StoreProvider initialState={initialState as StateSchema}>
         <I18nextProvider i18n={i18n_forTest}>
           {Component}
         </I18nextProvider>
-      </MemoryRouter>
-    </StoreProvider>
+      </StoreProvider>
+    </MemoryRouter>
   )
 }
 

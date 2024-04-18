@@ -1,6 +1,6 @@
 import { classNames, type Mods } from 'shared/lib/classNames/classNames'
 import cls from './ProfileCard.module.scss'
-import { type FC } from 'react'
+import { type FC, memo } from 'react'
 import { type Profile } from '../../model/types/profile'
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text'
 import { useTranslation } from 'react-i18next'
@@ -28,7 +28,7 @@ interface ProfileCardProps {
   onChangeCurrency?: (currency: Currency) => void
 }
 
-export const ProfileCard: FC<ProfileCardProps> = (props) => {
+const _ProfileCard: FC<ProfileCardProps> = (props) => {
   const {
     className,
     data,
@@ -140,4 +140,4 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
   )
 }
 
-export default ProfileCard
+export const ProfileCard = memo(_ProfileCard)

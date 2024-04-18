@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
-import ProfilePage from './ProfilePage'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
+import { ProfileCard } from './ProfileCard'
 import { type Profile } from 'entities/Profile'
 import { Country } from 'entities/Country'
 import { Currency } from 'entities/Currency'
+import avatar from 'shared/assets/test/avatar.png'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'pages/ProfilePage',
-  component: ProfilePage,
+  title: 'entities/ProfileCard',
+  component: ProfileCard,
   parameters: {
     layout: ''
   },
   tags: ['autodocs'],
   argTypes: {}
-} satisfies Meta<typeof ProfilePage>
+} satisfies Meta<typeof ProfileCard>
 
 export default meta
 
@@ -29,56 +29,45 @@ const data: Profile = {
   lastname: 'Ivanov',
   first: 'Ivan',
   currency: Currency.RUB,
-  city: 'Astana'
+  city: 'Birobidzhan',
+  avatar
 }
 
 export const Light: Story = {
-  args: {},
+  args: {
+    data
+  },
   decorators: [
-    ThemeDecorator(Theme.LIGHT),
-    StoreDecorator({
-      profile: {
-        data
-      }
-    })
+    ThemeDecorator(Theme.LIGHT)
   ]
 }
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    data
+  },
   decorators: [
-    ThemeDecorator(Theme.DARK),
-    StoreDecorator({
-      profile: {
-        data,
-        form: data,
-        readonly: true
-      }
-    })
+    ThemeDecorator(Theme.DARK)
   ]
 }
 
 export const Blue: Story = {
-  args: {},
+  args: { data },
   decorators: [
-    ThemeDecorator(Theme.BLUE),
-    StoreDecorator({
-      profile: {
-        form: data,
-        readonly: true
-      }
-    })
+    ThemeDecorator(Theme.BLUE)
   ]
 }
 
 export const Loading: Story = {
-  args: {},
+  args: { isLoading: true },
   decorators: [
-    ThemeDecorator(Theme.BLUE),
-    StoreDecorator({
-      profile: {
-        isLoading: true
-      }
-    })
+    ThemeDecorator(Theme.DARK)
+  ]
+}
+
+export const Editable: Story = {
+  args: { data, readonly: false },
+  decorators: [
+    ThemeDecorator(Theme.DARK)
   ]
 }
