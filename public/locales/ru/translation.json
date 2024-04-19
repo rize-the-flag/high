@@ -19,5 +19,6 @@
   "firstName": "Ваше имя",
   "lastName": "Ваша фамилия",
   "Age": "Возраст",
-  "EditProfileButton": "Редактировать"
+  "EditProfileButton": "Редактировать",
+  "MenuArticleLink": "Статьи"
 }

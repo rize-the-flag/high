@@ -18,5 +18,6 @@
   "firstName": "First Name",
   "lastName": "Last Name",
   "age": "Age",
-  "EditProfileButton": "Edit"
+  "EditProfileButton": "Edit",
+  "MenuArticleLink": "Articles"
 }

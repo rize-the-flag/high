@@ -1,5 +1,6 @@
 export { userReducer } from './model/slice/userSlice'
 export { userActions } from './model/slice/userSlice'
+export { getHasAuthDataInit } from './model/selectors/getHasAuthDataInit/getHasAuthDataInit'
 export { getAuthData } from './model/selectors/getAuthData/getAuthData'
 export type { UserSchema, User } from './model/types/user'
 export { isUser } from './lib/guards/isUser'

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { LoginModal } from 'features/AuthByUsername'
 import { USER_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAuthData, isUser, userActions } from 'entities/User'
+import { getAuthData, isUser, type User, userActions } from 'entities/User'
 
 interface NavbarProps {
   className?: string
@@ -32,10 +32,15 @@ export const Navbar = ({ className }: NavbarProps) => {
   }
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '{}')
-    if (isUser(user)) {
-      dispatch(userActions.setAuthData(user))
+    const userStr = localStorage.getItem(USER_LOCAL_STORAGE_KEY)
+    let user: User | undefined
+
+    if (userStr) {
+      user = JSON.parse(userStr)
+      user = isUser(user) ? user : undefined
     }
+
+    dispatch(userActions.setAuthData(user))
   }, [dispatch])
 
   if (auth) {
