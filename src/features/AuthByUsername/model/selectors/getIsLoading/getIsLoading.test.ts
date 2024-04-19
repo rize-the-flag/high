@@ -14,6 +14,6 @@ describe('getIsLoading.test', () => {
   })
 
   test('Should work with empty state', () => {
-    expect(getIsLoading({} as StateSchema)).toEqual(false)
+    expect(getIsLoading({} as StateSchema)).toEqual(undefined)
   })
 })

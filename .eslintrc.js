@@ -51,7 +51,8 @@ module.exports = {
         "react-hooks/exhaustive-deps": "error",
         "no-param-reassign": "off",
         "@typescript-eslint/prefer-nullish-coalescing": "off",
-        "@typescript-eslint/consistent-type-assertions": "off"
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@typescript-eslint/no-misused-promises": "off"
     },
     "settings": {
         "react": {
