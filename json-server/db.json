@@ -6,28 +6,75 @@
       "views": 200
     }
   ],
+  "articles": [{
+    "id": "1",
+    "title": "Javascript news",
+    "subtitle": "Что нового в JS за 2024",
+    "img": "",
+    "views": 1022,
+    "createdAt": "26.02.2022",
+    "type": ["IT"],
+    "blocks": [
+      {
+        "id": "1",
+        "type": "TEXT",
+        "title": "Заголовок этого блока",
+        "paragraphs": [
+          "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+          "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+        ]
+      },
+      {
+        "id": "4",
+        "type": "CODE",
+        "code": "<!DOCTYPE html>\n<html>\n  <body>\n    <p id=\"hello\"></p>\n\n    <script>\n      document.getElementById(\"hello\").innerHTML = \"Hello, world!\";\n    </script>\n  </body>\n</html>"
+      },
+      {
+        "id": "2",
+        "type": "IMAGE",
+        "src": "",
+        "title": "Рисунок 1 - скриншот сайта"
+      }
+    ]
+  }],
   "comments": [
     {
-      "text": "put",
-      "postId": null,
-      "id": "1"
+      "id": "1",
+      "text": "Hi there",
+      "articleId": "1",
+      "userId": "1"
     },
     {
       "id": "2",
-      "text": "another comment about post 1",
-      "postId": null
+      "text": "Отличная статья",
+      "articleId": "1",
+      "userId": "2"
+    },
+    {
+      "id": "3",
+      "text": "Мимокрокодил 1",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "4",
+      "text": "Мимокрокодил 2",
+      "articleId": "1",
+      "userId": "2"
     }
   ],
   "login": [
     {
       "id": 1,
       "userName": "Oleg",
-      "password": "1234"
+      "password": "1234",
+      "roles": "ADMIN"
     },
     {
       "id": 2,
       "userName": "Ivan",
-      "password": "1234"
+      "password": "1234",
+      "roles":  "USER"
     }
   ],
   "profile": {

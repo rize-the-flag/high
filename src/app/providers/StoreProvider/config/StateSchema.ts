@@ -4,6 +4,7 @@ import { type LoginSchema } from 'features/AuthByUsername'
 import { type ProfileSchema } from 'entities/Profile'
 import { type AxiosInstance } from 'axios'
 import { type NavigateFunction } from 'react-router-dom'
+import { type ArticleDetailsSchema } from 'entities/Article'
 
 export interface StateSchema extends AsyncState, PersistentState {
 }
@@ -16,6 +17,7 @@ export interface PersistentState {
 export interface AsyncState {
   loginForm?: LoginSchema
   profile?: ProfileSchema
+  articleDetails?: ArticleDetailsSchema
 }
 
 export type StateSchemaKeys = keyof StateSchema
