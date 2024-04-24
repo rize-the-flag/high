@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Text, TextAlign, TextTheme } from './Text'
+import { Text, TextAlign, TextSize, TextTheme } from './Text'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
 
@@ -18,7 +18,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const PrimaryLight: Story = {
+export const NormalLight: Story = {
   args: {
     theme: TextTheme.PRIMARY,
     title: 'Text',
@@ -36,7 +36,7 @@ export const ErrorLight: Story = {
   decorators: [ThemeDecorator(Theme.LIGHT)]
 }
 
-export const PrimaryDark: Story = {
+export const NormalDark: Story = {
   args: {
     theme: TextTheme.PRIMARY,
     title: 'Text',
@@ -80,6 +80,28 @@ export const AlignRight: Story = {
     title: 'Text',
     message: 'Text',
     align: TextAlign.RIGHT
+  },
+  decorators: [ThemeDecorator(Theme.DARK)]
+}
+
+export const SizeL: Story = {
+  args: {
+    theme: TextTheme.PRIMARY,
+    title: 'Text',
+    message: 'Text',
+    align: TextAlign.CENTER,
+    size: TextSize.L
+  },
+  decorators: [ThemeDecorator(Theme.DARK)]
+}
+
+export const SizeM: Story = {
+  args: {
+    theme: TextTheme.PRIMARY,
+    title: 'Text',
+    message: 'Text',
+    align: TextAlign.CENTER,
+    size: TextSize.M
   },
   decorators: [ThemeDecorator(Theme.DARK)]
 }

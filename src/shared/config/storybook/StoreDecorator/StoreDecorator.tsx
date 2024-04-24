@@ -4,10 +4,12 @@ import { type DeepPartial } from 'shared/lib/genericTypes/genericTypes'
 import { type ReducersMapObject } from '@reduxjs/toolkit'
 import { loginFormReducer } from 'features/AuthByUsername/model/slice/loginSlice'
 import { profileReducer } from 'entities/Profile'
+import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice'
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
   loginForm: loginFormReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  articleDetails: articleDetailsReducer
 }
 
 export const StoreDecorator = (state: DeepPartial<StateSchema>, asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>) => {

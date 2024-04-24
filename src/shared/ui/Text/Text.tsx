@@ -13,6 +13,11 @@ export enum TextTheme {
   ERROR = 'error',
 }
 
+export enum TextSize {
+  M = 'size_m',
+  L = 'size_l'
+}
+
 interface TextProps {
   className?: string
   title?: string
@@ -20,6 +25,7 @@ interface TextProps {
   theme?: TextTheme
   style?: CSSProperties
   align?: TextAlign
+  size?: TextSize
 }
 
 export const Text: FC<TextProps> = (props) => {
@@ -29,11 +35,23 @@ export const Text: FC<TextProps> = (props) => {
     title,
     theme = TextTheme.PRIMARY,
     style,
-    align = TextAlign.LEFT
+    align = TextAlign.LEFT,
+    size = TextSize.M
   } = props
 
   return (
-    <div style={style} className={classNames(cls.text, {}, [className, cls[theme], cls[align]])}>
+    <div
+      style={style}
+      className={classNames(
+        cls.text,
+        {},
+        [
+          className,
+          cls[theme],
+          cls[align],
+          cls[size]
+        ]
+      )}>
       {title && <h3 className={cls.title}>{title}</h3>}
       {message && <p className={cls.message}>{message}</p>}
     </div>

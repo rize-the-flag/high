@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import ArticleDetailsPage from './ArticleDetailsPage'
 
 const meta = {
-  title: 'layer/ArticleDetailsPage',
+  title: 'pages/ArticleDetailsPage',
   component: ArticleDetailsPage,
   parameters: {
     layout: ''
