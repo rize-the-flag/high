@@ -75,18 +75,20 @@
       "userId": "2"
     }
   ],
-  "login": [
+  "users": [
     {
       "id": 1,
       "userName": "Oleg",
       "password": "1234",
-      "roles": "ADMIN"
+      "roles": "ADMIN",
+      "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
     },
     {
       "id": 2,
       "userName": "Ivan",
       "password": "1234",
-      "roles": "USER"
+      "roles": "USER",
+      "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
     }
   ],
   "profile": {
@@ -94,9 +96,9 @@
     "lastname": "Morozov",
     "age": 25,
     "currency": "RUB",
-    "country": "Russia",
+    "country": "Kazakhstan",
     "city": "Vladivostok",
-    "username": "RizeTheFlag",
+    "username": "RizeTheFlag12",
     "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
   }
 }

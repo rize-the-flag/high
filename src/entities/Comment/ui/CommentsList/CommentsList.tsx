@@ -33,6 +33,7 @@ const _CommentsList: FC<CommentsListProps> = (props) => {
               isLoading={isLoading}
               comment={comment}
               key={comment.id}
+              className={cls.comment}
             />
           ))
           : <Text message={t('NoComments')}/>

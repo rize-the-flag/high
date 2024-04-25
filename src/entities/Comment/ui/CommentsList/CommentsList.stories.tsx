@@ -16,5 +16,15 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Normal: Story = {
-  args: {}
+  args: {
+    comments: [{
+      id: '1',
+      text: 'Text',
+      user: {
+        id: 1,
+        avatar: '',
+        userName: 'UserName'
+      }
+    }]
+  }
 }

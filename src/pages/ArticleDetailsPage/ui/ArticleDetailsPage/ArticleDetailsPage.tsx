@@ -6,6 +6,12 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { CommentsList } from 'entities/Comment'
 import { Text } from 'shared/ui/Text/Text'
+import { useDynamicReducer } from 'shared/hooks/UseDynamicReducer/useDynamicReducer'
+import { type StateSchema } from 'app/providers/StoreProvider'
+import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice'
+import { useSelector } from 'react-redux'
+import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice'
+import { getArticleCommentsError, getArticleCommentsIsLoading } from '../../model/selectors/comments'
 
 interface ArticleDetailsPageProps {
   className?: string
@@ -16,8 +22,13 @@ const _ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     className
   } = props
 
+  useDynamicReducer<StateSchema>('articleDetailsComment', articleDetailsReducer)
+
   const { id } = useParams<{ id: string }>()
   const { t } = useTranslation()
+  const comments = useSelector(getArticleComments.selectAll)
+  const isCommentsLoading = useSelector(getArticleCommentsIsLoading)
+  const error = useSelector(getArticleCommentsError)
 
   if (!id) {
     return (
@@ -32,25 +43,8 @@ const _ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
       <ArticleDetails id={id}/>
       <Text title={t('Comments')}/>
       <CommentsList
-        isLoading={true}
-        comments={[
-          {
-            id: '1',
-            text: 'Text',
-            user: {
-              id: 1,
-              userName: 'Vasya'
-            }
-          },
-          {
-            id: '2',
-            text: 'Text',
-            user: {
-              id: 1,
-              userName: 'Vasya'
-            }
-          }
-        ]}
+        isLoading={isCommentsLoading}
+        comments={comments}
       />
     </div>
   )

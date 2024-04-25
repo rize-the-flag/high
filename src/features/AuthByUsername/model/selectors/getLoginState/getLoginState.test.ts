@@ -3,7 +3,7 @@ import { getLoginState } from './getLoginState'
 import { type DeepPartial } from 'shared/lib/genericTypes/genericTypes'
 
 describe('getLoginState.test', () => {
-  test('Should login form state slice', () => {
+  test('Should login form state slices', () => {
     const state: Pick<StateSchema, 'loginForm'> = {
       loginForm: {
         userName: 'ABCD',
