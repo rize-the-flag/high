@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames'
-import cls from './ArticlesPage.module.scss'
 import { type FC } from 'react'
 
 interface ArticlesPageProps {
@@ -12,7 +11,7 @@ const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
   } = props
 
   return (
-    <div className={classNames(cls.ArticlesPage, {}, [className])}>
+    <div className={classNames('', {}, [className])}>
       {'ARTICLES PAGE'}
     </div>
   )
