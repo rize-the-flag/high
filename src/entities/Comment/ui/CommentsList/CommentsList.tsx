@@ -18,8 +18,7 @@ const _CommentsList: FC<CommentsListProps> = (props) => {
   const {
     className,
     isLoading,
-    comments,
-    error
+    comments
   } = props
 
   const { t } = useTranslation()

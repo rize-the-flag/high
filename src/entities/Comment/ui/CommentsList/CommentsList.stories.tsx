@@ -21,7 +21,7 @@ export const Normal: Story = {
       id: '1',
       text: 'Text',
       user: {
-        id: 1,
+        id: '1',
         avatar: '',
         userName: 'UserName'
       }

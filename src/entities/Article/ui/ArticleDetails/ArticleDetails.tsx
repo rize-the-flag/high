@@ -1,7 +1,7 @@
 import { type FC, memo, useEffect } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ArticleDetails.module.scss'
-import { useDynamicReducer } from 'shared/hooks/UseDynamicReducer/useDynamicReducer'
+import { useDynamicReducer } from 'shared/hooks/useDynamicReducer/useDynamicReducer'
 import { type StateSchema } from 'app/providers/StoreProvider'
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'

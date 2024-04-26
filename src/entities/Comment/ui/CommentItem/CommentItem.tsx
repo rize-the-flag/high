@@ -1,11 +1,12 @@
-import { memo } from 'react'
+import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './CommentItem.module.scss'
-import { type FC } from 'react'
 import { type Comment } from '../../model/types/comment'
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
 import Avatar from 'shared/ui/Avatar/Avatar'
 import { Text } from 'shared/ui/Text/Text'
+import AppLink from 'shared/ui/AppLink/AppLink'
+import { RoutePath } from 'shared/config/route-config/route-config'
 
 interface CommentProps {
   className?: string
@@ -34,13 +35,13 @@ const _CommentItem: FC<CommentProps> = (props) => {
 
   return (
     <div className={classNames(cls.Comment, {}, [className])}>
-      <div className={cls.commentHeader}>
+      <AppLink to={`${RoutePath.profile}/${comment.user.id}`} className={cls.commentHeader}>
         <Avatar
           className={cls.avatar}
           size={30} src={comment.user.avatar}
         />
         <Text title={comment.user.userName} className={cls.username}/>
-      </div>
+      </AppLink>
       <Text message={comment.text}/>
     </div>
   )

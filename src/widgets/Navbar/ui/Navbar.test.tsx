@@ -9,7 +9,7 @@ describe('Navbar unit tests', () => {
         user: {
           authData: {
             userName: '1234',
-            id: 12
+            id: '12'
           }
         }
       }

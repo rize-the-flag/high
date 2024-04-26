@@ -73,32 +73,76 @@
       "text": "Мимокрокодил 2",
       "articleId": "1",
       "userId": "2"
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "1234",
+      "id": "i5qS7qx"
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "1234",
+      "id": "09yYqf9"
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "42314",
+      "id": "fhp19kT"
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "4321",
+      "id": "tOk17D2"
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "Hi all",
+      "id": "dB9BK0A"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "Oleg",
       "password": "1234",
       "roles": "ADMIN",
       "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
     },
     {
-      "id": 2,
+      "id": "2",
       "userName": "Ivan",
       "password": "1234",
       "roles": "USER",
       "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
     }
   ],
-  "profile": {
-    "first": "Denis",
-    "lastname": "Morozov",
-    "age": 25,
-    "currency": "RUB",
-    "country": "Kazakhstan",
-    "city": "Vladivostok",
-    "username": "RizeTheFlag12",
-    "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Oleg",
+      "lastname": "Olegov",
+      "age": 21,
+      "currency": "EUR",
+      "country": "Belarus",
+      "city": "Vladivostok",
+      "username": "Oleg",
+      "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
+    },
+    {
+      "id": "2",
+      "first": "Ivan",
+      "lastname": "Ivanov",
+      "age": 25,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Vladivostok",
+      "username": "Ivan",
+      "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"
+    }
+  ]
 }

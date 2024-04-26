@@ -37,17 +37,18 @@ server.use((req, res, next) => {
     if (!isAuthorized(req)) {
         return res.status(401).json({statusCode: 'Authorization required'});
     }
+    console.dir(req.body)
     next()
 })
 
 server.post('/login', (req, res) => {
     const {userName, password} = req.body;
     const db = JSON.parse(readFileSync(path.resolve(__dirname, 'db.json'), {encoding: 'utf-8'}));
-    const {login} = db
-    const user = login.find((user) => user.userName === userName);
+    const {users} = db
+    const user = users.find((user) => user.userName === userName);
+    console.log('login: ',  users)
     if (user && user.password === password) {
-        console.log(user)
-        return res.status(200).json({userId: user.id, userName: user.userName})
+        return res.status(200).json({id: user.id, userName: user.userName})
     }
     res.status(403).json({message: 'AUTH ERROR'})
 })

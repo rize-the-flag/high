@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames'
-import { useDynamicReducer } from 'shared/hooks/UseDynamicReducer/useDynamicReducer'
+import { useDynamicReducer } from 'shared/hooks/useDynamicReducer/useDynamicReducer'
 import { type StateSchema } from 'app/providers/StoreProvider'
 import {
   fetchProfileData,
@@ -12,7 +12,7 @@ import {
   ProfileCard,
   profileReducer
 } from 'entities/Profile'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import ProfilePageHeader from './ProfilePageHeader/ProfilePageHeader'
@@ -23,6 +23,8 @@ import { type Country } from 'entities/Country/model/types/country'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { ValidateProfileError } from 'entities/Profile/model/types/profile'
 import { useTranslation } from 'react-i18next'
+import { useInitialEffect } from 'shared/hooks/useInitialEffect/useInitialEffect'
+import { useParams } from 'react-router-dom'
 
 interface ProfilePageProps {
   className?: string
@@ -38,6 +40,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   const readonly = useSelector(getProfileReadonly)
   const validateErrors = useSelector(getProfileErrors)
   const { t } = useTranslation()
+  const { id: profileId } = useParams<{ id: string }>()
 
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t('ServerError'),
@@ -81,11 +84,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     }))
   }, [dispatch])
 
-  useEffect(() => {
-    if (__PROJECT__ !== 'storybook') {
-      void dispatch(fetchProfileData())
-    }
-  }, [dispatch])
+  useInitialEffect(() => {
+    void dispatch(fetchProfileData(profileId))
+  }, [dispatch, profileId])
 
   const onChangeCountry = useCallback((value: Country) => {
     if (isCountry(value)) {

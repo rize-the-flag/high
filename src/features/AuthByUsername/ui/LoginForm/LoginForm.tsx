@@ -13,8 +13,8 @@ import { getPassword } from 'features/AuthByUsername/model/selectors/getPassword
 import { getIsLoading } from 'features/AuthByUsername/model/selectors/getIsLoading/getIsLoading'
 import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
 import { type StateSchema } from 'app/providers/StoreProvider/config/StateSchema'
-import { useDynamicReducer } from 'shared/hooks/UseDynamicReducer/useDynamicReducer'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
+import { useDynamicReducer } from 'shared/hooks/useDynamicReducer/useDynamicReducer'
 
 interface LoginFormProps {
   className?: string

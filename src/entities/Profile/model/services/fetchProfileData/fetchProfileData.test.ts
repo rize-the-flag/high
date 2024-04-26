@@ -23,7 +23,7 @@ describe('getIsLoading.test', () => {
       data: profile
     }))
 
-    const result = await thunk.callThunk(undefined)
+    const result = await thunk.callThunk('1')
 
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(thunk.api.get).toHaveBeenCalled()

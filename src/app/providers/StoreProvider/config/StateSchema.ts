@@ -6,6 +6,7 @@ import { type AxiosInstance } from 'axios'
 import { type NavigateFunction } from 'react-router-dom'
 import { type ArticleDetailsSchema } from 'entities/Article'
 import { type ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage'
+import { type AddCommentFormSchema } from 'features/AddNewComment/model/types/addCommentForm'
 
 export interface StateSchema extends AsyncState, PersistentState {
 }
@@ -19,7 +20,8 @@ export interface AsyncState {
   loginForm?: LoginSchema
   profile?: ProfileSchema
   articleDetails?: ArticleDetailsSchema
-  articleDetailsComment?: ArticleDetailsCommentSchema
+  articleDetailsComments?: ArticleDetailsCommentSchema
+  addCommentForm?: AddCommentFormSchema
 }
 
 export type StateSchemaKeys = keyof StateSchema
@@ -30,7 +32,7 @@ export interface ThunkExtraArg {
 }
 
 export interface ThunkConfig<T> {
-  rejectValue: T
   extra: ThunkExtraArg
   state: StateSchema
+  rejectValue: T
 }

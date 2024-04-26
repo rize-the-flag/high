@@ -17,11 +17,11 @@ describe('getIsLoading.test', () => {
     }))
     const thunk = new TestAsyncThunk(loginByUserName)
     const result = await thunk.callThunk({ userName: '123', password: '123' })
-    expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData({ userName: '123', id: 1 }))
+    expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData({ userName: '123', id: '1' }))
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(mockedAxios.post).toHaveBeenCalled()
     expect(result.meta.requestStatus).toBe('fulfilled')
-    expect(result.payload).toEqual({ userName: '123', id: 1 })
+    expect(result.payload).toEqual({ userName: '123', id: '1' })
   })
 
   test('[Positive] Auth Error', async () => {

@@ -19,9 +19,10 @@ export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, Thun
     } = thunkAPI
 
     try {
-      const response = await extra.api.post<User>('/users', authData, { headers: { authorization: '' } })
+      const response = await extra.api.post<User>('/login', authData, { headers: { authorization: '' } })
       extra.navigate?.('/about')
       dispatch(userActions.setAuthData(response.data))
+      console.log(response.data)
       storeAuthToLocalStorage(response.data)
       return response.data
     } catch (e) {
