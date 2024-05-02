@@ -5,7 +5,7 @@ import { Text } from 'shared/ui/Text/Text'
 import { Button, ThemeButton } from 'shared/ui/Button/Button'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { getProfileReadonly, getUserProfile, profileActions, saveProfileData } from 'entities/Profile'
+import { getProfileReadonly, profileActions, saveProfileData } from 'entities/Profile'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { canEditProfile } from 'pages/ProfilePage/model/selectors/profilePageSelectors'
 
