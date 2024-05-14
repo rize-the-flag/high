@@ -7,6 +7,7 @@ import { type NavigateFunction } from 'react-router-dom'
 import { type ArticleDetailsSchema } from 'entities/Article'
 import { type ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage'
 import { type AddCommentFormSchema } from 'features/AddNewComment/model/types/addCommentForm'
+import { type ArticlesPageSchema } from 'pages/ArticlesPage'
 
 export interface StateSchema extends AsyncState, PersistentState {
 }
@@ -22,6 +23,7 @@ export interface AsyncState {
   articleDetails?: ArticleDetailsSchema
   articleDetailsComments?: ArticleDetailsCommentSchema
   addCommentForm?: AddCommentFormSchema
+  articlesPage?: ArticlesPageSchema
 }
 
 export type StateSchemaKeys = keyof StateSchema
