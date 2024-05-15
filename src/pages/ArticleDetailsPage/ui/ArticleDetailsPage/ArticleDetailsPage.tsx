@@ -17,6 +17,7 @@ import {
 import { useInitialEffect } from 'shared/hooks/useInitialEffect/useInitialEffect'
 import { AddCommentForm } from 'features/AddNewComment'
 import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle'
+import { Page } from 'shared/ui/Page/Page'
 
 interface ArticleDetailsPageProps {
   className?: string
@@ -52,7 +53,7 @@ const _ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
   }
 
   return (
-    <div className={classNames('', {}, [className])}>
+    <Page className={classNames(className ?? '')}>
       <ArticleDetails id={id}/>
       <Text title={t('Comments')}/>
       <AddCommentForm
@@ -62,7 +63,7 @@ const _ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
         isLoading={isCommentsLoading}
         comments={comments}
       />
-    </div>
+    </Page>
   )
 }
 

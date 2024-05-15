@@ -20,7 +20,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
   }
 
   return (
-    <div
+    <menu
       data-testid="sidebar"
       className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className ?? ''])}>
       <Button
@@ -48,7 +48,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
         />
         <ThemeSwitcher/>
       </div>
-    </div>
+    </menu>
   )
 }
 

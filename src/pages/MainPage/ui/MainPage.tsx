@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Input from 'shared/ui/Input/Input'
+import { Page } from 'shared/ui/Page/Page'
 
 const MainPage = () => {
   const { t } = useTranslation('main')
   const [value, setValue] = useState('')
 
   return (
-    <div style={{ color: 'green' }}>
+    <Page>
       {t('MainPage')}
       <Input
         placeholder='Name'
@@ -16,7 +17,7 @@ const MainPage = () => {
           setValue(value)
         }}
       />
-    </div>
+    </Page>
   )
 }
 

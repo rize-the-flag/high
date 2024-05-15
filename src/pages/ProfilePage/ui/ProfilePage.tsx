@@ -25,6 +25,7 @@ import { ValidateProfileError } from 'entities/Profile/model/types/profile'
 import { useTranslation } from 'react-i18next'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect/useInitialEffect'
 import { useParams } from 'react-router-dom'
+import { Page } from 'shared/ui/Page/Page'
 
 interface ProfilePageProps {
   className?: string
@@ -111,7 +112,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   }, [dispatch])
 
   return (
-    <div className={classNames('', {}, [className ?? ''])}>
+    <Page className={classNames('', {}, [className ?? ''])}>
       <ProfilePageHeader/>
       {(validateErrors?.length) && validateErrors.map(error => (
         <Text
@@ -134,7 +135,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         onChangeCurrency={onChangeCurrency}
         onChangeUserName={onChangeUserName}
       />
-    </div>
+    </Page>
   )
 }
 

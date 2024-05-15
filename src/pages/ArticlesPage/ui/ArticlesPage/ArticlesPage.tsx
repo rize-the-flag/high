@@ -14,6 +14,7 @@ import {
   getArticlesPageView
 } from './model/selectors/articlesPageSelector'
 import { ARTICLE_VIEW_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
+import { Page } from 'shared/ui/Page/Page'
 
 interface ArticlesPageProps {
   className?: string
@@ -33,8 +34,8 @@ const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
   const isError = useSelector(getArticlesPageError)
 
   useInitialEffect(() => {
-    void dispatch(fetchArticleList())
     dispatch(articlePageActions.init())
+    void dispatch(fetchArticleList({ page: 1 }))
   }, [])
 
   const onChangeView = useCallback((view: ArticleView) => {
@@ -43,14 +44,14 @@ const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
   }, [dispatch])
 
   return (
-    <div className={classNames('', {}, [className])}>
+    <Page className={classNames('', {}, [className])}>
       <ArticleViewSelector view={view} onViewClick={onChangeView}/>
       <ArticleList
         isLoading={isLoading}
         view={view}
         articles={articles}
       />
-    </div>
+    </Page>
   )
 }
 

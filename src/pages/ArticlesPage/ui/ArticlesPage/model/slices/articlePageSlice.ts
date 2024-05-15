@@ -12,6 +12,9 @@ const articleAdapter = createEntityAdapter<Article, Article['id']>({
 const initialState = articleAdapter.getInitialState<ArticlesPageSchema>({
   isLoading: false,
   error: undefined,
+  hasMore: true,
+  limit: 1,
+  page: 1,
   ids: [],
   entities: {},
   view: ArticleView.SMALL
@@ -28,7 +31,17 @@ const articlePageSlice = createSlice({
     },
 
     init: (state) => {
-      state.view = localStorage.getItem(ARTICLE_VIEW_LOCAL_STORAGE_KEY) as ArticleView
+      const view = localStorage.getItem(ARTICLE_VIEW_LOCAL_STORAGE_KEY) as ArticleView
+      state.view = view
+      state.limit = view === ArticleView.BIG ? 3 : 4
+    },
+
+    setPage: (state, action: PayloadAction<ArticlesPageSchema['page']>) => {
+      state.page = action.payload
+    },
+
+    setPerPageLimit: (state, action: PayloadAction<ArticlesPageSchema['limit']>) => {
+      state.limit = action.payload
     }
   },
 
