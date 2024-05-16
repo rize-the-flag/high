@@ -13,6 +13,29 @@ interface ArticleListProps {
   view?: ArticleView
 }
 
+const getSkeletons = (view: ArticleView) => (
+  <>
+    {new Array(view === ArticleView.SMALL ? 16 : 3)
+      .fill(0)
+      .map((item, index) => (
+        <ArticleListItemSkeleton
+          className={cls.card}
+          key={index}
+          view={view}
+        />
+      ))}
+  </>
+)
+
+const renderArticle = (article: Article, view: ArticleView) => {
+  return (
+    <ArticleListItem
+      article={article}
+      view={view}
+    />
+  )
+}
+
 const _ArticleList: FC<ArticleListProps> = (props) => {
   const {
     className,
@@ -22,37 +45,17 @@ const _ArticleList: FC<ArticleListProps> = (props) => {
   } = props
 
   if (isLoading) {
-    return (
-      <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-        {new Array(view === ArticleView.SMALL ? 16 : 3)
-          .fill(0)
-          .map((item, index) => (
-            <ArticleListItemSkeleton
-              className={cls.card}
-              key={index}
-              view={view}
-            />
-          ))}
-      </div>
-    )
-  }
-
-  const renderArticle = (article: Article) => {
-    return (
-      <ArticleListItem
-        article={article}
-        view={view}
-      />
-    )
+    getSkeletons(view)
   }
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
       {
         articles.length > 0 && (
-          articles.map(renderArticle)
+          articles.map(article => renderArticle(article, view))
         )
       }
+      {isLoading && getSkeletons(view)}
     </div>
   )
 }

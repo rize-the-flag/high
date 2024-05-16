@@ -6,21 +6,21 @@ import { useInfiniteScroll } from 'shared/hooks/useInfiniteScroll/useInfiniteScr
 interface PageProps {
   className?: string
   children: ReactNode
+  onScrollEnd?: () => void
 }
 
 const _Page: FC<PageProps> = (props) => {
   const {
     className,
-    children
+    children,
+    onScrollEnd
   } = props
 
   const wrapperRef = useRef<HTMLElement | null>(null)
   const triggerRef = useRef<HTMLDivElement | null>(null)
 
   useInfiniteScroll({
-    callback: () => {
-      console.log('Callbacking')
-    },
+    callback: onScrollEnd,
     wrapperRef,
     triggerRef
   })
@@ -28,7 +28,7 @@ const _Page: FC<PageProps> = (props) => {
   return (
     <section ref={wrapperRef} className={classNames(cls.Page, {}, [className])}>
       {children}
-      <div ref={triggerRef}></div>
+      <div ref={triggerRef} />
     </section>
   )
 }

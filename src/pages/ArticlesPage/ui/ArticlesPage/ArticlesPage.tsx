@@ -9,12 +9,16 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { fetchArticleList } from './model/services/fetchArticlesList/fetchArticleList'
 import { useSelector } from 'react-redux'
 import {
+  getArticlesHasMore,
   getArticlesPageError,
-  getArticlesPageIsLoading,
+  getArticlesPageIsLoading, getArticlesPageNumber,
   getArticlesPageView
 } from './model/selectors/articlesPageSelector'
 import { ARTICLE_VIEW_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
 import { Page } from 'shared/ui/Page/Page'
+import {
+  fetchNextArticlesPage
+} from 'pages/ArticlesPage/ui/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage'
 
 interface ArticlesPageProps {
   className?: string
@@ -32,6 +36,12 @@ const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
   const isLoading = useSelector(getArticlesPageIsLoading)
   const view = useSelector(getArticlesPageView)
   const isError = useSelector(getArticlesPageError)
+  const page = useSelector(getArticlesPageNumber)
+  const hasMoreArticles = useSelector(getArticlesHasMore)
+
+  const onLoadNextPart = useCallback(() => {
+    dispatch(fetchNextArticlesPage)
+  }, [dispatch])
 
   useInitialEffect(() => {
     dispatch(articlePageActions.init())
@@ -44,7 +54,10 @@ const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
   }, [dispatch])
 
   return (
-    <Page className={classNames('', {}, [className])}>
+    <Page
+      className={classNames('', {}, [className])}
+      onScrollEnd={onLoadNextPart}
+    >
       <ArticleViewSelector view={view} onViewClick={onChangeView}/>
       <ArticleList
         isLoading={isLoading}
