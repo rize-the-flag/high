@@ -344,7 +344,7 @@
       ]
     },
     {
-      "id": "7",
+      "id": "9",
       "userId": "1",
       "title": "Javascript news",
       "subtitle": "Что нового в JS за 2024",
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "8",
+      "id": "10",
       "userId": "1",
       "title": "Javascript news",
       "subtitle": "Что нового в JS за 2024",
@@ -518,8 +518,8 @@
       "first": "Oleg",
       "lastname": "Olegov",
       "age": 21,
-      "currency": "EUR",
-      "country": "Belarus",
+      "currency": "USD",
+      "country": "Russia",
       "city": "Vladivostok",
       "username": "Oleg",
       "avatar": "https://cdn-icons-png.flaticon.com/128/6070/6070879.png"

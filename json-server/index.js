@@ -37,9 +37,10 @@ server.use((req, res, next) => {
     if (!isAuthorized(req)) {
         return res.status(401).json({statusCode: 'Authorization required'});
     }
-    console.dir(req.body)
-    next()
+    next();
 })
+
+server.
 
 server.post('/login', (req, res) => {
     const {userName, password} = req.body;

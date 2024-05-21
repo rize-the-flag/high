@@ -4,6 +4,7 @@ import { type StateSchema } from 'app/providers/StoreProvider'
 import { type ArticlesPageSchema } from '../types/articlesPageSchema'
 import { fetchArticleList } from '../services/fetchArticlesList/fetchArticleList'
 import { ARTICLE_VIEW_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
+import { ARTICLES_VIEW_BIG_DISPLAY_NUM, ARTICLES_VIEW_SMALL_DISPLAY_NUM } from 'entities/Article/model/types/article'
 
 const articleAdapter = createEntityAdapter<Article, Article['id']>({
   selectId: (article) => article.id
@@ -33,7 +34,7 @@ const articlePageSlice = createSlice({
     init: (state) => {
       const view = localStorage.getItem(ARTICLE_VIEW_LOCAL_STORAGE_KEY) as ArticleView
       state.view = view
-      state.limit = view === ArticleView.BIG ? 3 : 4
+      state.limit = view === ArticleView.BIG ? ARTICLES_VIEW_BIG_DISPLAY_NUM : ARTICLES_VIEW_SMALL_DISPLAY_NUM
     },
 
     setPage: (state, action: PayloadAction<ArticlesPageSchema['page']>) => {
@@ -52,6 +53,7 @@ const articlePageSlice = createSlice({
     })
 
     builder.addCase(fetchArticleList.fulfilled, (state, action) => {
+      console.log(action.payload)
       state.isLoading = false
       state.hasMore = action.payload.length > 0
       articleAdapter.addMany(state, action.payload)

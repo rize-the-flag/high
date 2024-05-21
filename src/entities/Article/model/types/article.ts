@@ -39,6 +39,9 @@ export enum ArticleView {
   SMALL = 'SMALL'
 }
 
+export const ARTICLES_VIEW_BIG_DISPLAY_NUM = 3
+export const ARTICLES_VIEW_SMALL_DISPLAY_NUM = 9
+
 export type ArticleBlock = ArticleTextBlock | ArticleCodeBlock | ArticleImageBlock
 
 export interface Article {
