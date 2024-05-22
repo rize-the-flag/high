@@ -1,21 +1,31 @@
-import { type Reducer } from '@reduxjs/toolkit'
+import { type ReducerFromReducersMapObject, type ReducersMapObject } from '@reduxjs/toolkit'
 import { useEffect } from 'react'
 import { useStore } from 'react-redux'
 import { type StoreWithReducerManager } from 'shared/lib/reducerManager/createReducerManager'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 
-export function useDynamicReducer<TState extends object> (slice: keyof TState, reducer: Reducer) {
+export interface UseDynamicReducerArgs<TState extends object> {
+  slice: keyof TState
+  reducer: ReducerFromReducersMapObject<ReducersMapObject<TState>>
+  removeAfterUnmount?: boolean
+}
+
+export function useDynamicReducer<TState extends object> ({ slice, reducer, removeAfterUnmount = true }: UseDynamicReducerArgs<TState>) {
   const state = useStore.withTypes<StoreWithReducerManager<TState>>()()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    state.reducerManager.add(slice, reducer)
-    dispatch({ type: `@INIT ASYNC ${String(slice)}` })
-    console.info(state.getState())
-    return () => {
-      state.reducerManager.remove(slice)
-      dispatch({ type: `@DESTROY ASYNC ${String(slice)}` })
-      console.info(state.getState())
+    const wasMounted = Object.keys(state.reducerManager.getReducerMap()).some(s => s === slice)
+    if (!wasMounted) {
+      state.reducerManager.add(slice, reducer)
+      dispatch({ type: `@INIT ASYNC ${String(slice)}` })
     }
-  }, [dispatch, reducer, slice, state, state.reducerManager])
+
+    if (removeAfterUnmount) {
+      return () => {
+        state.reducerManager.remove(slice)
+        dispatch({ type: `@DESTROY ASYNC ${String(slice)}` })
+      }
+    }
+  }, [dispatch, reducer, removeAfterUnmount, slice, state, state.reducerManager])
 }

@@ -25,3 +25,7 @@ declare const __PROJECT__: 'frontend' | 'storybook' | 'jest'
 declare module 'global' {
   export type valueOf<T extends Record<string | number | symbol, unknown>> = T[keyof T]
 }
+
+declare type OptionalRecord<K extends keyof any, T> = {
+  [P in K]?: T
+}

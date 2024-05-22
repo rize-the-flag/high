@@ -28,7 +28,10 @@ const _ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     className
   } = props
 
-  useDynamicReducer<StateSchema>('articleDetailsComments', articleDetailsCommentsReducer)
+  useDynamicReducer<StateSchema>({
+    slice: 'articleDetailsComments',
+    reducer: articleDetailsCommentsReducer
+  })
 
   const { id } = useParams<{ id: string }>()
   const { t } = useTranslation()

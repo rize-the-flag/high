@@ -51,7 +51,10 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     }
   }, [dispatch, onSuccess, password, userName])
 
-  useDynamicReducer<StateSchema>('loginForm', loginFormReducer)
+  useDynamicReducer<StateSchema>({
+    slice: 'loginForm',
+    reducer: loginFormReducer
+  })
 
   return (
     <form

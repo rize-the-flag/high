@@ -47,7 +47,11 @@ const _ArticleDetails: FC<ArticleDetailsProps> = (props) => {
   } = props
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  useDynamicReducer<StateSchema>('articleDetails', articleDetailsReducer)
+  useDynamicReducer<StateSchema>({
+    slice: 'articleDetails',
+    reducer: articleDetailsReducer,
+    removeAfterUnmount: true
+  })
 
   const isLoading = useSelector(getArticleDetailsIsLoading)
   const error = useSelector(getArticleDetailsError)

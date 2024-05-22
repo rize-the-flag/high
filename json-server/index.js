@@ -40,7 +40,6 @@ server.use((req, res, next) => {
     next();
 })
 
-server.
 
 server.post('/login', (req, res) => {
     const {userName, password} = req.body;

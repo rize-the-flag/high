@@ -32,9 +32,12 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
-  const dispatch = useAppDispatch()
-  useDynamicReducer<StateSchema>('profile', profileReducer)
+  useDynamicReducer<StateSchema>({
+    slice: 'profile',
+    reducer: profileReducer
+  })
 
+  const dispatch = useAppDispatch()
   const profileData = useSelector(getProfileFormData)
   const isLoading = useSelector(getIsProfileLoading)
   const error = useSelector(getIsProfileError)

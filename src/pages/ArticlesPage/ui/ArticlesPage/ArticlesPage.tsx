@@ -6,24 +6,23 @@ import { type StateSchema } from 'app/providers/StoreProvider'
 import { articlePageActions, articlePageReducer, getArticles } from './model/slices/articlePageSlice'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect/useInitialEffect'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { fetchArticleList } from './model/services/fetchArticlesList/fetchArticleList'
 import { useSelector } from 'react-redux'
-import {
-  getArticlesPageIsLoading,
-  getArticlesPageView
-} from './model/selectors/articlesPageSelector'
+import { getArticlesPageIsLoading, getArticlesPageView } from './model/selectors/articlesPageSelector'
 import { ARTICLE_VIEW_LOCAL_STORAGE_KEY } from 'shared/const/localStorage'
 import { Page } from 'shared/ui/Page/Page'
-import {
-  fetchNextArticlesPage
-} from './model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { initArticlesPage } from './model/services/initArticlesPage/initArticlesPage'
 
 interface ArticlesPageProps {
   className?: string
 }
 
 const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
-  useDynamicReducer<StateSchema>('articlesPage', articlePageReducer)
+  useDynamicReducer<StateSchema>({
+    slice: 'articlesPage',
+    reducer: articlePageReducer,
+    removeAfterUnmount: false
+  })
 
   const {
     className
@@ -34,13 +33,12 @@ const _ArticlesPage: FC<ArticlesPageProps> = (props) => {
   const isLoading = useSelector(getArticlesPageIsLoading)
   const view = useSelector(getArticlesPageView)
 
-  const onLoadNextPart = useCallback(() => {
-    void dispatch(fetchNextArticlesPage())
+  useInitialEffect(() => {
+    void dispatch(initArticlesPage())
   }, [dispatch])
 
-  useInitialEffect(() => {
-    dispatch(articlePageActions.init())
-    void dispatch(fetchArticleList({ page: 1 }))
+  const onLoadNextPart = useCallback(() => {
+    void dispatch(fetchNextArticlesPage())
   }, [dispatch])
 
   const onChangeView = useCallback((view: ArticleView) => {

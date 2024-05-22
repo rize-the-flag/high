@@ -2,16 +2,14 @@ import {
   type ActionFromReducer,
   combineReducers,
   type EnhancedStore,
-  type Reducer,
   type ReducerFromReducersMapObject,
-  type ReducersMapObject,
-  type UnknownAction
+  type ReducersMapObject, type StateFromReducersMapObject
 } from '@reduxjs/toolkit'
 
 export interface ReducerManager<TState extends Record<string, any>> {
   getReducerMap: () => ReducersMapObject<TState>
-  reduce: (state: TState, action: UnknownAction) => TState
-  add: (key: keyof TState, reducer: Reducer) => void
+  reduce: (state: TState | undefined, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>) => StateFromReducersMapObject<ReducersMapObject<TState>>
+  add: (key: keyof TState, reducer: ReducerFromReducersMapObject<ReducersMapObject<TState>>) => void
   remove: (key: keyof TState) => void
 }
 
@@ -20,8 +18,8 @@ export interface StoreWithReducerManager<TState extends Record<string, any>> ext
 }
 
 export function createReducerManager<
-  TState extends Record<string, any> = object,
-> (initialReducers: ReducersMapObject<TState>) {
+  TState extends Record<string, any>,
+> (initialReducers: ReducersMapObject<TState>): ReducerManager<TState> {
   const reducers = { ...initialReducers }
   let combinedReducer = combineReducers<ReducersMapObject<TState>>(reducers)
   let keysToRemove: Array<keyof TState> = []
@@ -35,7 +33,7 @@ export function createReducerManager<
 
     getReducerMap: () => reducers,
 
-    reduce: (state: TState | undefined, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>) => {
+    reduce: (state: TState | undefined, action: ActionFromReducer<ReducerFromReducersMapObject<ReducersMapObject<TState>>>): StateFromReducersMapObject<ReducersMapObject<TState>> => {
       if (keysToRemove.length > 0 && state) {
         state = { ...state }
         keysToRemove.forEach((key) => {

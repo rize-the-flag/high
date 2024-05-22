@@ -25,7 +25,10 @@ const _AddCommentForm: FC<AddCommentFormProps> = (props) => {
   const text = useSelector(getCommentText)
   const dispatch = useAppDispatch()
 
-  useDynamicReducer<StateSchema>('addCommentForm', addCommentSliceReducer)
+  useDynamicReducer<StateSchema>({
+    slice: 'addCommentForm',
+    reducer: addCommentSliceReducer
+  })
 
   const onCommentTextChange = useCallback((value: string) => {
     dispatch(addCommentSliceActions.setText(value))
